@@ -1,0 +1,30 @@
+drop table if exists entries;
+create table higawari(
+    datatime datatime not null,
+    a string not null,
+    b string not null,
+    c string not null,
+    d string not null,
+    e string not null,
+    f string not null,
+    d1 string not null,
+    d2 string not null,
+    d3 string not null,
+    e1 string,
+    e2 string,
+    e3 string,
+
+    pa string not null,
+    pb string not null,
+    pc string not null,
+    pd string not null,
+    pe string not null,
+    pf string not null,
+    #pd1 string not null,
+    #pd2 string not null,
+    #pd3 string not null,
+    pe1 string,
+    pe2 string,
+    pe3 string,
+    parent_id integer
+);
