@@ -1,4 +1,4 @@
-drop table if exists entries;
+drop table if exists higawari;
 create table higawari(
     datatime datatime not null,
     a string not null,

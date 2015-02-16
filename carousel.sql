@@ -1,4 +1,4 @@
-drop table if exists entries;
+drop table if exists carousel;
 create table carousel(
     pic_name string not null,
     h1_str string not null,

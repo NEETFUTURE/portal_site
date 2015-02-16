@@ -1,4 +1,4 @@
-drop table if exists entries;
+drop table if exists opinion;
 create table opinion(
     question string not null,
     answer string,
