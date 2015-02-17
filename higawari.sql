@@ -1,5 +1,6 @@
 drop table if exists higawari;
 create table higawari(
+    id integer primary key autoincrement,
     datatime datatime not null,
     a string not null,
     b string not null,
@@ -20,11 +21,10 @@ create table higawari(
     pd string not null,
     pe string not null,
     pf string not null,
-    #pd1 string not null,
-    #pd2 string not null,
-    #pd3 string not null,
+    pd1 string not null,
+    pd2 string not null,
+    pd3 string not null,
     pe1 string,
     pe2 string,
-    pe3 string,
-    parent_id integer
+    pe3 string
 );
