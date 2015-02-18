@@ -16,6 +16,7 @@ CAROUSEL = 'carousel.db'
 HIGAWARI = 'higawari.db'
 OPINION = 'opinion.db'
 OSIRASE = 'osirase.db'
+UPLOADDIR = "upload_picture"
 
 
 
@@ -41,6 +42,12 @@ def rank():
 @app.route("/opinion")
 def opinion():
     return render_template("index.html")
+
+
+#ファイルへのリンクを返すルーティング
+@app.route("/view_upload/<path:filename>")
+def view_upload(filename):
+    return send_from_directory(UPLOADDIR, filename)
 
 
 
