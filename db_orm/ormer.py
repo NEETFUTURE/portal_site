@@ -63,9 +63,24 @@ class opi(Base):
     datatime = Column(String())
 
 
-#おまじない x 3
+#おまじない x 4
 
-#Session = sessionmaker(\
-#    bind=create_engine("sqlite:///osirase.db", echo=True)\
-#    )
-#osi_session = Session()
+Session = sessionmaker(\
+    bind=create_engine("sqlite:///carousel.db", echo=True)\
+    )
+car_session = Session()
+
+Session = sessionmaker(\
+    bind=create_engine("sqlite:///osirase.db", echo=True)\
+    )
+osi_session = Session()
+
+Session = sessionmaker(\
+    bind=create_engine("sqlite:///higawari.db", echo=True)\
+    )
+hig_session = Session()
+
+Session = sessionmaker(\
+    bind=create_engine("sqlite:///opinion.db", echo=True)\
+    )
+opi_session = Session()
