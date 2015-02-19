@@ -3,6 +3,26 @@ from sqlalchemy.types import Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import desc, asc
+import datetime
+
+
+def changeStringToDatetime(str_data):
+    """
+    strのフォーマットはyear/month/day/hour/minute/second
+    """
+    a = str_data.split("/")
+    a = list(map(int,a))
+    return datetime.datetime(*a)
+
+
+def changeDatetimeToString(date):
+    y = date.year
+    m = date.month
+    d = date.day
+    h = date.hour
+    mi = date.minute
+    s = date.second
+    return "%s/%s/%s/%s/%s/%s"%(y,m,d,h,mi,s)
 
 
 Base = declarative_base()
@@ -15,10 +35,11 @@ class Hoge(Base):
     id = Column(Integer(), primary_key=True)
     title = Column(String())
     text = Column(String())
+    time = Column(String())
 
 
 #おまじない
-engine = create_engine("sqlite:///hoge.db", echo=True)
+engine = create_engine("sqlite:///hoge2.db", echo=True)
 Session = sessionmaker(bind=engine)
 session = Session()
 
@@ -38,6 +59,7 @@ for hoge in session.query(Hoge).all():
     print(hoge.id)
     print(hoge.title)
     print(hoge.text)
+    print(changeStringToDatetime(hoge.time))
 
 
 #全件削除
@@ -54,7 +76,7 @@ for hoge in session.query(Hoge).all():
 
 
 #idが2のモノで一番最初のモノのidを取得
-print("-------%d-------"%session.query(Hoge).filter_by(id=2).first().id)
+print("-------%s-------"%session.query(Hoge).filter_by(id=2).first().time)
 
 
 #id昇順
