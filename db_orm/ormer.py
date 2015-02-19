@@ -21,28 +21,28 @@ class higa(Base):
     __tablename__ = "higawari"
     datatime = Column(String())
     id = Column(Integer(), primary_key=True)
-    a   = Column(String()))
-    b   = Column(String()))
-    c   = Column(String()))
-    d   = Column(String()))
-    e   = Column(String()))
-    f   = Column(String()))
-    d1  = Column(String()))
-    d2  = Column(String()))
-    d3  = Column(String()))
-    e1  = Column(String()))
-    e2  = Column(String()))
-    e3  = Column(String()))
+    a   = Column(String())
+    b   = Column(String())
+    c   = Column(String())
+    d   = Column(String())
+    e   = Column(String())
+    f   = Column(String())
+    d1  = Column(String())
+    d2  = Column(String())
+    d3  = Column(String())
+    e1  = Column(String())
+    e2  = Column(String())
+    e3  = Column(String())
 
-    pa  = Column(String()))
-    pb  = Column(String()))
-    pc  = Column(String()))
-    pd  = Column(String()))
-    pe  = Column(String()))
-    pf  = Column(String()))
-    #pd = 1 string not nul)
-    #pd = 2 string not nul)
-    #pd = 3 string not nul)
+    pa  = Column(String())
+    pb  = Column(String())
+    pc  = Column(String())
+    pd  = Column(String())
+    pe  = Column(String())
+    pf  = Column(String())
+    #pd = 1 string not nu))
+    #pd = 2 string not nu))
+    #pd = 3 string not nu))
     pe1 =  Column(String())
     pe2 =  Column(String())
     pe3 =  Column(String())
@@ -56,7 +56,16 @@ class osi(Base):
 
 
 class opi(Base):
+    __tablename__ = "opinion"
     id = Column(Integer(), primary_key=True)
     question = Column(String())
     answer = Column(String())
     datatime = Column(String())
+
+
+#おまじない x 3
+
+#Session = sessionmaker(\
+#    bind=create_engine("sqlite:///osirase.db", echo=True)\
+#    )
+#osi_session = Session()
