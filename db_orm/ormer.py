@@ -8,8 +8,7 @@ from sqlalchemy import desc, asc
 
 Base = declarative_base()
 
-
-class car(Base):
+class Carousel(Base):
     __tablename__ = "carousel"
     pic_name = Column(String())
     h1_str = Column(String())
@@ -17,9 +16,9 @@ class car(Base):
     id = Column(Integer(), primary_key=True)
 
 
-class higa(Base):
+class Higawari(Base):
     __tablename__ = "higawari"
-    datatime = Column(String())
+    time = Column(String())
     id = Column(Integer(), primary_key=True)
     a   = Column(String())
     b   = Column(String())
@@ -48,19 +47,19 @@ class higa(Base):
     pe3 =  Column(String())
 
 
-class osi(Base):
+class Osirase(Base):
     __tablename__ = "osirase"
-    datatime = Column(String())
+    time = Column(String())
     id = Column(Integer(), primary_key=True)
     title = Column(String())
 
 
-class opi(Base):
+class Opinion(Base):
     __tablename__ = "opinion"
     id = Column(Integer(), primary_key=True)
     question = Column(String())
     answer = Column(String())
-    datatime = Column(String())
+    time = Column(String())
 
 
 #おまじない x 4
