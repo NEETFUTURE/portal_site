@@ -1,7 +1,7 @@
 drop table if exists higawari;
 create table higawari(
     id integer primary key autoincrement,
-    datatime datatime not null,
+    time string not null,
     a string not null,
     b string not null,
     c string not null,
