@@ -8,6 +8,8 @@ from sqlalchemy import desc, asc
 
 Base = declarative_base()
 
+#Columnにnullable = Falseって引数与えるとnot nullになるらしいです
+
 class Carousel(Base):
     __tablename__ = "carousel"
     pic_name = Column(String())
