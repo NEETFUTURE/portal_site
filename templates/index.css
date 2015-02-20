@@ -1,0 +1,239 @@
+	/* ------------------------------------- /
+	/   Header
+	/* ------------------------------------- */
+	#header {
+		/* 内側の余白　*/
+		padding-top: 0px;
+	/* 灰色の背景色 #eee */
+	background-color: #eee;
+}
+	
+
+	/*  logo
+	/--------------------------------- */
+	.logo{ /* センタリング */
+		/* 行を円の中央に配置 */
+		text-align: center;
+		/* 円を中央に配置 */
+		width: 100px;
+		/* leftとright両方autoでセンタリング */
+		margin-left: auto;
+		margin-right: auto;
+		/* under margin */
+		margin-bottom: 5px;
+	}
+
+	.logo h1 { /* 丸とフォントのスタイリング */
+		margin: 0;
+		/* innnar space */
+		padding-top: 38px;
+		/* size of circle */
+		width: 100px;
+		height: 100px;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+		border-radius: 50%;
+		font-size: 26px;
+		color: #7E7E7E;
+		background-color: #fff;
+	}
+
+	/*  nav
+	/*--------------------------------- */
+	.navbar {
+		border-radius: 0;
+	}
+
+	.navbar-nav {
+		float: left;
+		width: 400px;
+		margin: 10px auto;
+	}
+	.cool-font {
+		font-family: 'Shadows Into Light Two', cursive;
+		text-align: center;
+	 	float: right;
+
+	}
+
+	.navbar-nav > li {
+		text-align: center;
+		float: left;
+		width: 80px;
+		border-right: 1px solid #555;
+	}
+	.navbar-nav > li.first {
+		border-left: 1px solid #555;
+	}
+
+	.navbar-nav > li > a {
+		padding-top: 5px;
+		padding-bottom: 5px;
+	}
+	/*  nav
+	/--------------------------------- */
+	.navbar {
+		margin-bottom: 0; /* 追記 */
+	}
+
+	/*  carousel
+	/*--------------------------------- */
+	.carousel-inner img{
+		width: 100%;
+	}
+
+	/* ------------------------------------- /
+	/   content
+	/* ------------------------------------- */
+	.title{
+		text-align: center;
+		margin-top: 40px;
+		margin-bottom: 20px;
+	}
+
+	.text-box{
+		/* 下部のcatch title　までのスペース  */
+		margin-bottom: 40px;
+	}
+
+
+	/*  panel-box
+	/*--------------------------------- */
+	/*
+	.panel {
+		margin-bottom: 20px;
+		background-color: #D1D1D1;
+		border: none;
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+
+	.panel-body {
+		text-align: center;
+		height: 180px;
+		padding-top: 90px;
+		color: #888;
+		font-size: 18px;
+	}
+
+	.panel-footer {
+		text-align: center;
+		padding: 18px 15px;
+		background-color: #7E7E7E;
+		border-top: none;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
+		color: #fff;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	*/
+	.panel-body-right {
+		font-size: 18px;
+		height: 200px;
+		overflow: auto;
+	}
+	.panel-body-right-under {
+		font-size: 18px;
+		height: 235px;
+		overflow: auto;
+	}
+	.panel-body > p {
+		font-size: 18px;
+		height: 500px;
+		/* textboxをはみ出した時スクロールにきりかえる */
+		overflow: auto;
+	}
+
+	.pos {
+		margin-right: 15px;
+	}
+	/*  button-box
+	/*--------------------------------- */
+	.button-box{
+		text-align: center;
+		padding: 60px 0;
+		margin-top: 40px;
+		background-color: #eee;
+	}
+
+	.button-box p{
+		color: #888;
+	}
+
+	.btn {
+		padding: 12px 80px;
+	}
+
+	.button-box .btn-default{
+		color: #fff;
+		font-size: 18px;
+		font-weight: bold;
+		background-color: #7E7E7E;
+	}
+	/* ------------------------------------- /
+	/    Footer
+	/* ------------------------------------- */
+	#footer{
+		text-align: center;
+		padding: 40px 0;
+		background-color: #7E7E7E;
+	}
+
+	/*  logo
+	/*--------------------------------- */
+	#footer .logo{
+		margin-top: 0;
+	}
+
+	.logo p { /* 丸とフォントのスタイリング */
+		margin: 0;
+		padding-top: 34px;
+		width: 100px;
+		height: 100px;
+		-webkit-border-radius: 50%;
+		-moz-border-radius: 50%;
+		border-radius: 50%;
+		font-size: 26px;
+		color: #7E7E7E;
+		font-weight: bold;
+		background-color: #fff;
+	}
+
+	/*  nav
+	/*--------------------------------- */
+	#footer .navbar-nav>li {
+		border-right: 1px solid #000;
+	}
+	#footer .navbar-nav>li.first{
+		border-left: 1px solid #000;
+	}
+
+	#footer .navbar-nav li a{
+		color: #fff;
+	}
+
+	/*  sns-icon
+	/*--------------------------------- */
+	.sns-icon{
+		margin-top: 30px;
+	}
+
+	.sns-icon li{
+		padding-left: 20px;
+	}
+	.sns-icon li:hover{
+		color: #fff;
+	}
+
+	/*  copy
+	/*--------------------------------- */
+	.copy{
+		margin-top: 20px;
+	}
+
+	.copy span{
+		color: #333;
+	}
+

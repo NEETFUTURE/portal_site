@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>学食ポータル（仮）</title>
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+  <style>
+     </style>
+</head>
+<body>
+  <div id="header">
+  <!-- 
+    <div class="logo">
+        <h1>TDU</h1>
+    </div>
+    <!-- /logo -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+            <a class="navbar-brand cool-font" href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Cafe of University</a>
+
+            <!-- 画面サイズが小さいときに折りたたまれる処理 -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <!-- <span class="icon-bar"></span> -->
+                </button>
+                <span class="navbar-brand visible-xs" href="#">Menu</span>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="first">
+                        <a href="#">Top</a>
+                    </li>
+                    <li>
+                        <a href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a href="#">Rnaking</a>
+                    </li>
+                    <li>
+                        <a href="#">other</a>
+                    </li>
+                    <li>
+                        <a href="#">other</a>
+                    </li>
+                </ul>
+
+            <a class="navbar-brand cool-font btn btn-lg midashi-btn" role="button" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-knight" aria-hidden="true"></span> Login</a>
+        <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                <!--
+                  <div class="modal-header bg-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title cool-font" id="myModalLabel">Welcome</h4>
+                  </div>
+                  -->
+                  <div class="modal-body bg-warning">     
+                <!-- modal in login form -->
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Sign in</button>
+                    </div>
+                  </div>
+                </form> 
+                <!-- /modal in login form -->
+                  </div>
+                  <!--
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div> -->
+                </div>
+              </div>
+            </div><!-- /modal -->
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- container -->
+    </nav><!-- /nav -->
+</div>
+<!-- /header -->
+<div class="container">
+<!-- caroucel -->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item active">
+            <img src="../static/img/musa.jpg" alt="slide-1">
+            <div class="carousel-caption"><h1>今日のメニュー </h1>
+            <p>本日の定食や日替わり丼などを紹介！</p></div>
+        </div>
+        <div class="item">
+            <img src="../static/img/tdu.jpg" alt="slide-2">
+            <div class="carousel-caption">A dolorem et ipsa doloremque tempore placeat voluptates repellat repudiandae autem? Eius, </div>
+        </div>
+        <div class="item">
+            <img src="../static/img/imas.jpg" alt="slide-2">
+            <div class="carousel-caption">explicabo corporis eveniet ipsum velit labore quas voluptatum exercitationem fugit. </div>
+        </div>
+    </div>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div><!-- /carousel -->
+</div><!-- /container -->
+
+
+<div id="content">
+    <div class="container">
+        <h2 class="title page-header">本日の学食からのお知らせ</h2>
+
+
+
+        <!-- /title -->
+        <div class="row">
+            <div class="text-box col-sm-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">
+                    <div class="panel-title"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> サービス一覧 </div>
+                </div><!-- /panel-heading -->
+                    <div class="panel-body"><p>
+            学生食堂のサービスです。日替わり最高、唐沢たかひろ最高、￥！！！！！
+            恒心綜合法律事務所 </p></div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+            </div><!-- /text-box -->
+                <div class="text-box col-sm-6">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class ="panel-title"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> おしらせ </div>
+                        </div><!-- /panel-heading -->
+                            <div class="panel-body-right">
+                                <p>本日のお知らせ、ああああああああああああああああああああああああああああああああああああああああああ</p>
+                            </div> <!-- /panel-body -->
+                    </div><!-- /panel panel-info --> 
+                </div><!-- line112 /text-box -->
+            <div class="row">
+                   <div class="text-box col-sm-6">
+                    <div class="panel panel-danger pos">
+                        <div class="panel-heading">
+                            <div class="panel-title"><span class="glyphicon glyphicon-pushpin" aria-hidden="true"></span> カレンダー </div>
+                </div><!-- /panel-heading -->
+                    <div class="panel-body-right-under"><p>
+            いうえんcfんgゔぁえぎじぇいいgじおえfじごいwびvjrげいねんぎえおいえんぎんゔぉえgrにねいゔぃえんぎえんゔぃrんh </p></div><!-- /panel-body -->
+                </div><!-- /panel panel-default -->
+            </div><!-- /text-box -->
+       </div><!-- 124/ row -->
+       </div><!-- /row -->
+
+
+    </div><!-- /container -->
+
+    <div class="button-box">CATCH TITLE 
+        <button type="button" class="btn btn-default">Button</button>
+    </div>
+    <!-- /button-box -->
+</div>
+<!-- /content -->
+
+<div id="footer">
+    <div class="logo">LOGO </div>
+    <!-- /footer-logo -->
+    <!--
+    <ul class="navbar-nav list-inline">
+        <li class="first">
+            <a href="">MENU1</a>
+        </li>
+        <li>
+            <a href="">MENU2</a>
+        </li>
+        <li>
+            <a href="">MENU3</a>
+        </li>
+        <li>
+            <a href="">MENU4</a>
+        </li>
+        <li>
+            <a href="">MENU5</a>
+        </li>
+    </ul>
+    -->
+    <!-- /nav -->
+    <div class="clearfix"></div>
+    <ul class="sns-icon list-inline">
+        <li>
+            <i class="fa fa-twitter fa-2x"></i>
+        </li>
+        <li>
+            <i class="fa fa-facebook fa-2x"></i>
+        </li>
+    </ul>
+    <!-- /sns-icon -->
+    <div class="copy">
+        <span>Copyright &#169; 2013 example.com All Rights Reserved.</span>
+    </div>
+    <!-- /copy -->
+</div>
+<!-- /footer -->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+</body>
+</html>
+
