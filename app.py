@@ -12,6 +12,15 @@ from datetime import datetime as dtime
 import traceback
 import sys
 
+
+#データベース関係のモジュール
+from sqlalchemy import create_engine, Column
+from sqlalchemy.types import Integer, String
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import desc, asc
+
+
 CAROUSEL = 'carousel.db'
 HIGAWARI = 'higawari.db'
 OPINION = 'opinion.db'
