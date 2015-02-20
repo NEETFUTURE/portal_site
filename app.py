@@ -26,7 +26,7 @@ app.config.from_object(__name__)
 @app.route("/")
 @app.route("/index")
 def top_page():
-    return render_template("index.html")
+    return render_template("top.html")
 
 
 @app.route("/higawari")
