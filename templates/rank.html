@@ -24,11 +24,15 @@
 </script>
 <body>
 <h1>ランキング仮ページ</h1>
-	<input type="submit" name="submit" value="1に投票する" id="1" class="voting">
+<!-- 	<input type="submit" name="submit" value="1に投票する" id="1" class="voting">
 	<input type="submit" name="submit" value="2に投票する" id="2" class="voting">
 	<input type="submit" name="submit" value="3に投票する" id="3" class="voting">
 	<input type="submit" name="submit" value="4に投票する" id="4" class="voting">
-	<input type="submit" name="submit" value="5に投票する" id="5" class="voting">
+	<input type="submit" name="submit" value="5に投票する" id="5" class="voting"> -->
+  {% for m,v in menu_vote%}
+    <h4 color="red">index:{{loop.index}}</h4>
+    <h4>{{m}}--->{{v}}</h4>
+  {% endfor %}
 </body>
 
 {% endblock %}
