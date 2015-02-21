@@ -104,10 +104,10 @@ def rank():
     #         h.vote_d,h.vote_e,h.vote_f,
     #         h.vote_d1,h.vote_d2,h.vote_d3,
     #         h.vote_e1,h.vote_e2,h.vote_e3]
-    menu_vote = [[h.a,h.vote_a],[h.b,h.vote_b],[h.c,h.vote_c],
-                 [h.d,h.vote_d],[h.e,h.vote_e],[h.f,h.vote_f],
-                 [h.d1,h.vote_d1],[h.d2,h.vote_d2],[h.d3,h.vote_d3],
-                 [h.e1,h.vote_e1],[h.e2,h.vote_e2],[h.e3,h.vote_e3]]
+    menu_vote = [["a",h.a,h.vote_a],["b",h.b,h.vote_b],["c",h.c,h.vote_c],
+                 ["d",h.d,h.vote_d],["e",h.e,h.vote_e],["f",h.f,h.vote_f],
+                 ["d1",h.d1,h.vote_d1],["d2",h.d2,h.vote_d2],["d3",h.d3,h.vote_d3],
+                 ["e1",h.e1,h.vote_e1],["e2",h.e2,h.vote_e2],["e3",h.e3,h.vote_e3]]
 
 
     return render_template("rank.html",time=time,menu_vote=menu_vote)
@@ -115,12 +115,15 @@ def rank():
 
 @app.route("/connect", methods=["POST"])
 def connect():
-    get_json = request.json
-    #print get_json
-    id_num = int(get_json)
-    print(id_num)
+    g = request.json
+    h = session.query(Higawari).filter_by(id=1).first()
 
-    return Response(json.dumps("hoge"))
+    #exec使いたくないけどデータベースのカラム上これの方がシンプル。。。
+    exec("""h.vote_%s+=1"""%g)
+    session.commit()
+
+    #これまたevalも使いたくないんだけど(ry
+    return Response(json.dumps(eval("h.vote_%s"%g)))
 
     #id_numで指定のidの人userを持ってくる
     # if session.get("voting") is None:
