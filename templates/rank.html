@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+
+{% block body %}
+<script type=text/javascript>
+	$(function(){
+		$(".voting").click(function(){
+      		var json = JSON.stringify($(this).attr("id"));
+      		$.ajax({
+        		type:'POST',
+        		url:'{{ url_for('connect') }}',
+        		data:json,
+        		contentType:'application/json',
+        		success: function(data){
+        			// var vote_num = $.parseJSON(data)
+        			// var id = $.parseJSON(json)
+        			// var text = $("."+id).text().split(" ")[0]
+        			// $("."+id).text(text+" -> 投票数:"+vote_num)
+        		}
+      		});
+      		return false;
+    	});
+  	});
+</script>
+<body>
+<h1>ランキング仮ページ</h1>
+	<input type="submit" name="submit" value="1に投票する" id="1" class="voting">
+	<input type="submit" name="submit" value="2に投票する" id="2" class="voting">
+	<input type="submit" name="submit" value="3に投票する" id="3" class="voting">
+	<input type="submit" name="submit" value="4に投票する" id="4" class="voting">
+	<input type="submit" name="submit" value="5に投票する" id="5" class="voting">
+</body>
+
+{% endblock %}

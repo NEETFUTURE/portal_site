@@ -36,7 +36,30 @@ def higawari():
 
 @app.route("/rank")
 def rank():
-    return render_template("index.html")
+    return render_template("rank.html")
+
+
+@app.route("/connect", methods=["POST"])
+def connect():
+    get_json = request.json
+    #print get_json
+    id_num = int(get_json)
+    print(id_num)
+
+    return Response(json.dumps("hoge"))
+
+    #id_numで指定のidの人userを持ってくる
+    # if session.get("voting") is None:
+    #     #userのvoteカラム更新
+    #     user.vote += 1
+    #     c = user.vote
+    #     db.session.add(user)
+    #     db.session.commit()
+    #     session["voting"] = True
+    #     return Response(json.dumps(c))
+    # else:
+    #     c = user.vote
+    #     return Response(json.dumps(c))
 
 
 @app.route("/opinion")
