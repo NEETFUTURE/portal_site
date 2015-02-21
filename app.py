@@ -60,7 +60,7 @@ UPLOADDIR = "upload_picture"
 
 engine = create_engine("sqlite:///%s"%HIGAWARI, echo=True)
 Session = sessionmaker(bind=engine)
-session = Session()
+sess = Session()
 
 # higawari1 = Higawari(time="2015/2/21",
 #                      a="定食a",
@@ -95,7 +95,7 @@ def higawari():
 
 @app.route("/rank")
 def rank():
-    h = session.query(Higawari).filter_by(id=1).first()
+    h = sess.query(Higawari).filter_by(id=1).first()
     time = h.time
     # menu = [h.a,h.b,h.c,h.d,h.e,h.f,
     #         h.d1,h.d2,h.d3,
@@ -108,22 +108,24 @@ def rank():
                  ["d",h.d,h.vote_d],["e",h.e,h.vote_e],["f",h.f,h.vote_f],
                  ["d1",h.d1,h.vote_d1],["d2",h.d2,h.vote_d2],["d3",h.d3,h.vote_d3],
                  ["e1",h.e1,h.vote_e1],["e2",h.e2,h.vote_e2],["e3",h.e3,h.vote_e3]]
+    menu_vote.sort(key=lambda x:x[2])
 
 
-    return render_template("rank.html",time=time,menu_vote=menu_vote)
+    return render_template("rank.html",time=time,menu_vote=menu_vote[::-1])
 
 
 @app.route("/connect", methods=["POST"])
 def connect():
     g = request.json
-    h = session.query(Higawari).filter_by(id=1).first()
+    h = sess.query(Higawari).filter_by(id=1).first()
 
     #exec使いたくないけどデータベースのカラム上これの方がシンプル。。。
     exec("""h.vote_%s+=1"""%g)
-    session.commit()
+    sess.commit()
 
     #これまたevalも使いたくないんだけど(ry
     return Response(json.dumps(eval("h.vote_%s"%g)))
+
 
     #id_numで指定のidの人userを持ってくる
     # if session.get("voting") is None:
