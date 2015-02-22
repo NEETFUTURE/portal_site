@@ -12,10 +12,23 @@ Base = declarative_base()
 
 class Carousel(Base):
     __tablename__ = "carousel"
+    __Session__ = sessionmaker(\
+    bind=create_engine("sqlite:///carousel.db", echo=True)\
+    )
     pic_name = Column(String())
     h1_str = Column(String())
     link = Column(String())
     id = Column(Integer(), primary_key=True)
+
+    session = __Session__()
+
+    @classmethod
+    def get_dict(cls):
+        l=[]
+        for i in cls.session.query(cls).all():
+            l.append({"id":i.id,"link":i.link,"h1_str":i.h1_str})
+        return l
+
 
 
 class Higawari(Base):
@@ -67,11 +80,6 @@ class Opinion(Base):
 #おまじない x 4
 
 Session = sessionmaker(\
-    bind=create_engine("sqlite:///carousel.db", echo=True)\
-    )
-car_session = Session()
-
-Session = sessionmaker(\
     bind=create_engine("sqlite:///osirase.db", echo=True)\
     )
 osi_session = Session()
@@ -85,3 +93,5 @@ Session = sessionmaker(\
     bind=create_engine("sqlite:///opinion.db", echo=True)\
     )
 opi_session = Session()
+
+

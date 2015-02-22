@@ -11,6 +11,7 @@ import os
 from datetime import datetime as dtime
 import traceback
 import sys
+from db_orm import ormer
 
 CAROUSEL = 'carousel.db'
 HIGAWARI = 'higawari.db'
@@ -26,7 +27,7 @@ app.config.from_object(__name__)
 @app.route("/")
 @app.route("/index")
 def top_page():
-    return render_template("top.html")
+    return render_template("top.html",carousel_list=ormer.Carousel.get_dict())
 
 
 @app.route("/higawari")
@@ -52,4 +53,4 @@ def view_upload(filename):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True, threaded=True)
+    app.run(host="0.0.0.0", debug=True)
