@@ -37,7 +37,28 @@ def higawari():
 
 @app.route("/rank")
 def rank():
-    return render_template("index.html")
+    h = ormer.Higawari.return1st_by_id(id=1)
+    time = h.time
+    menu_vote = []
+    for m,v in zip(dir(h)[32:45],dir(h)[49:61]):
+        menu_vote.append([m,eval("h.%s"%m),eval("h.%s"%v)])
+
+    menu_vote.sort(key=lambda x:x[2])
+
+    return render_template("rank.html",time=time,menu_vote=menu_vote[::-1])
+
+
+@app.route("/connect", methods=["POST"])
+def connect():
+    g = request.json
+    h = ormer.Higawari.return1st_by_id(id=1)
+
+    #exec使いたくないけどデータベースのカラム上これの方がシンプル。。。
+    exec("""h.vote_%s+=1"""%g)
+    ormer.Higawari.session.commit()
+
+    #これまたevalも使いたくないんだけど(ry
+    return Response(json.dumps(eval("h.vote_%s"%g)))
 
 
 @app.route("/opinion")
