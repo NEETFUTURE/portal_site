@@ -59,12 +59,12 @@ def rank():
     #         h.vote_d,h.vote_e,h.vote_f,
     #         h.vote_d1,h.vote_d2,h.vote_d3,
     #         h.vote_e1,h.vote_e2,h.vote_e3]
-    menu_vote = [["a",h.a,h.vote_a],["b",h.b,h.vote_b],["c",h.c,h.vote_c],
-                 ["d",h.d,h.vote_d],["e",h.e,h.vote_e],["f",h.f,h.vote_f],
-                 ["d1",h.d1,h.vote_d1],["d2",h.d2,h.vote_d2],["d3",h.d3,h.vote_d3],
-                 ["e1",h.e1,h.vote_e1],["e2",h.e2,h.vote_e2],["e3",h.e3,h.vote_e3]]
-    menu_vote.sort(key=lambda x:x[2])
+    menu_vote = []
+    
+    for m,v in zip(dir(h)[32:45],dir(h)[49:61]):
+        menu_vote.append([m,eval("h.%s"%m),eval("h.%s"%v)])
 
+    menu_vote.sort(key=lambda x:x[2])
 
     return render_template("rank.html",time=time,menu_vote=menu_vote[::-1])
 
