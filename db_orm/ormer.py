@@ -33,33 +33,42 @@ class Carousel(Base):
 
 class Higawari(Base):
     __tablename__ = "higawari"
-    time = Column(String())
+    __Session__ = sessionmaker(\
+    bind=create_engine("sqlite:///higawari.db", echo=True)\
+    )
     id = Column(Integer(), primary_key=True)
-    a   = Column(String())
-    b   = Column(String())
-    c   = Column(String())
-    d   = Column(String())
-    e   = Column(String())
-    f   = Column(String())
-    d1  = Column(String())
-    d2  = Column(String())
-    d3  = Column(String())
+    time = Column(String(), nullable=False)
+    a   = Column(String(), nullable=False)
+    b   = Column(String(), nullable=False)
+    c   = Column(String(), nullable=False)
+    d   = Column(String(), nullable=False)
+    e   = Column(String(), nullable=False)
+    f   = Column(String(), nullable=False)
+    d1  = Column(String(), nullable=False)
+    d2  = Column(String(), nullable=False)
+    d3  = Column(String(), nullable=False)
     e1  = Column(String())
     e2  = Column(String())
     e3  = Column(String())
 
-    pa  = Column(String())
-    pb  = Column(String())
-    pc  = Column(String())
-    pd  = Column(String())
-    pe  = Column(String())
-    pf  = Column(String())
-    #pd = 1 string not nu))
-    #pd = 2 string not nu))
-    #pd = 3 string not nu))
-    pe1 =  Column(String())
-    pe2 =  Column(String())
-    pe3 =  Column(String())
+    vote_a  = Column(Integer(), default=0)
+    vote_b  = Column(Integer(), default=0)
+    vote_c  = Column(Integer(), default=0)
+    vote_d  = Column(Integer(), default=0)
+    vote_e  = Column(Integer(), default=0)
+    vote_f  = Column(Integer(), default=0)
+    vote_d1 = Column(Integer(), default=0)
+    vote_d2 = Column(Integer(), default=0)
+    vote_d3 = Column(Integer(), default=0)
+    vote_e1 =  Column(Integer(), default=0)
+    vote_e2 =  Column(Integer(), default=0)
+    vote_e3 =  Column(Integer(), default=0)
+
+    session = __Session__()
+
+    @classmethod
+    def return1st_by_id(cls,id):
+        return cls.session.query(cls).filter_by(id=id).first()
 
 
 class Osirase(Base):
