@@ -93,10 +93,6 @@ Session = sessionmaker(\
     )
 osi_session = Session()
 
-Session = sessionmaker(\
-    bind=create_engine("sqlite:///higawari.db", echo=True)\
-    )
-hig_session = Session()
 
 Session = sessionmaker(\
     bind=create_engine("sqlite:///opinion.db", echo=True)\
