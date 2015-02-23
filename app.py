@@ -11,56 +11,11 @@ import os
 from datetime import datetime as dtime
 import traceback
 import sys
-
-from sqlalchemy import create_engine, Column
-from sqlalchemy.types import Integer, String
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import desc, asc
+from db_orm import ormer
 
 
-Base = declarative_base()
-
-class Higawari(Base):
-    __tablename__ = "higawari"
-    id = Column(Integer(), primary_key=True)
-    time = Column(String(), nullable=False)
-    a   = Column(String(), nullable=False)
-    b   = Column(String(), nullable=False)
-    c   = Column(String(), nullable=False)
-    d   = Column(String(), nullable=False)
-    e   = Column(String(), nullable=False)
-    f   = Column(String(), nullable=False)
-    d1  = Column(String(), nullable=False)
-    d2  = Column(String(), nullable=False)
-    d3  = Column(String(), nullable=False)
-    e1  = Column(String())
-    e2  = Column(String())
-    e3  = Column(String())
-
-    vote_a  = Column(Integer(), default=0)
-    vote_b  = Column(Integer(), default=0)
-    vote_c  = Column(Integer(), default=0)
-    vote_d  = Column(Integer(), default=0)
-    vote_e  = Column(Integer(), default=0)
-    vote_f  = Column(Integer(), default=0)
-    vote_d1 = Column(Integer(), default=0)
-    vote_d2 = Column(Integer(), default=0)
-    vote_d3 = Column(Integer(), default=0)
-    vote_e1 =  Column(Integer(), default=0)
-    vote_e2 =  Column(Integer(), default=0)
-    vote_e3 =  Column(Integer(), default=0)
-
-
-CAROUSEL = 'carousel.db'
-HIGAWARI = 'higawari.db'
-OPINION = 'opinion.db'
-OSIRASE = 'osirase.db'
 UPLOADDIR = "upload_picture"
 
-engine = create_engine("sqlite:///%s"%HIGAWARI, echo=True)
-Session = sessionmaker(bind=engine)
-sess = Session()
 
 # higawari1 = Higawari(time="2015/2/21",
 #                      a="定食a",
@@ -95,7 +50,7 @@ def higawari():
 
 @app.route("/rank")
 def rank():
-    h = sess.query(Higawari).filter_by(id=1).first()
+    h = ormer.Higawari.return1st_by_id(id=1)
     time = h.time
     # menu = [h.a,h.b,h.c,h.d,h.e,h.f,
     #         h.d1,h.d2,h.d3,
@@ -117,11 +72,11 @@ def rank():
 @app.route("/connect", methods=["POST"])
 def connect():
     g = request.json
-    h = sess.query(Higawari).filter_by(id=1).first()
+    h = ormer.Higawari.return1st_by_id(id=1)
 
     #exec使いたくないけどデータベースのカラム上これの方がシンプル。。。
     exec("""h.vote_%s+=1"""%g)
-    sess.commit()
+    ormer.Higawari.session.commit()
 
     #これまたevalも使いたくないんだけど(ry
     return Response(json.dumps(eval("h.vote_%s"%g)))
