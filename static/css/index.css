@@ -6,7 +6,19 @@
 		padding-top: 0px;
 	/* 灰色の背景色 #eee */
 	background-color: #eee;
-}
+	}
+
+	html {
+		overflow-x : hidden;
+	}
+	body{
+		overflow-x : hidden;
+	}
+
+	.scroll {
+		overflow: auto;
+		-webkit-overflow-scrolling: touch;
+	}
 	
 
 	/*  logo
