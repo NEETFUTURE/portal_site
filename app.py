@@ -93,12 +93,12 @@ def opinion():
 #reCAPCHAを使って認証＆メール送信
 @app.route("/sendopinion",methods=["POST"])
 def sendopinion():
-#    if(request.from["g-recaptcha-response"]==""):
+#    if(request.request.args.get("g-recaptcha-response")==""):
 #        return "画像認証を受けてください"
 
 #    url="https://www.google.com/recaptcha/api/siteverify"
 #    keys={"secret":"しーくれっときー",
-#          "response":request.form["g-recaptcha-response"]}
+#          "response":request.args.get("g-recaptcha-response")}
 #    req=urllib.request.Request(url,keys)
 #    res=urllib.request.urlopen(req)
 #    d_data=json.loads(res.read().decode("utf-8"))
