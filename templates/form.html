@@ -4,3 +4,20 @@
 {% block body %}
 <html lang="ja">
 </html>
+<head>
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+</head>
+<body>
+    <form action="{{url_for('sendopinion')}}" method="post"  enctype="multipart/form-data" >
+    <div class="g-recaptcha" data-sitekey="{あなたのSite key}"></div>
+        <dl>
+            <dt>メールアドレス:
+            <dd><input type="text" size="30" name="adress">
+            <dt>コメント:
+            <dd><textarea name="body" rows="5" cols="40"></textarea>
+            <dd><input type="submit" value="投稿">
+        </dl>
+    </form>
+
+</body>
+{% endblock %}
