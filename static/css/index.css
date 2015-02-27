@@ -6,20 +6,29 @@
 		padding-top: 0px;
 	/* 灰色の背景色 #eee */
 	background-color: #eee;
+}
+	.div-top {
+		margin-top: 20px;
 	}
 
 	html {
 		overflow-x : hidden;
 	}
 	body{
+		background-image: url("/static/img/9.png");
+		background-repeat: repeat;
 		overflow-x : hidden;
 	}
 
 	.scroll {
 		overflow: auto;
 		-webkit-overflow-scrolling: touch;
+
 	}
-	
+
+	.calendar {
+		overflow: scroll;
+	}
 
 	/*  logo
 	/--------------------------------- */
@@ -64,7 +73,6 @@
 	.cool-font {
 		font-family: 'Shadows Into Light Two', cursive;
 		text-align: center;
-	 	float: right;
 
 	}
 
@@ -92,7 +100,10 @@
 	/*--------------------------------- */
 	.carousel-inner img{
 		width: 100%;
+		.transition(.1s ease-in-out left);
 	}
+
+
 
 	/* ------------------------------------- /
 	/   content
@@ -163,10 +174,10 @@
 	}
 	/*  button-box
 	/*--------------------------------- */
-	.button-box{
+	.gray-zone{
 		text-align: center;
-		padding: 60px 0;
-		margin-top: 40px;
+		padding: 10px 0;
+		margin-top: 10px;
 		background-color: #eee;
 	}
 
@@ -176,6 +187,7 @@
 
 	.btn {
 		padding: 12px 80px;
+		text-align: center;
 	}
 
 	.button-box .btn-default{
@@ -184,6 +196,7 @@
 		font-weight: bold;
 		background-color: #7E7E7E;
 	}
+
 	/* ------------------------------------- /
 	/    Footer
 	/* ------------------------------------- */
@@ -242,7 +255,7 @@
 	/*  copy
 	/*--------------------------------- */
 	.copy{
-		margin-top: 20px;
+		margin-top: 10px;
 	}
 
 	.copy span{
