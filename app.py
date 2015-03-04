@@ -66,6 +66,20 @@ def opinion():
     return render_template("index.html")
 
 
+@app.route("/admin",methods=["POST","GET"])
+def adminpage():
+    car = ormer.Carousel.get_dict()
+    hig = ormer.Higawari.return1st_by_id(id=1)
+    time = hig.time
+    menu_vote = []
+    for m,v in zip(dir(hig)[32:45],dir(hig)[49:61]):
+        menu_vote.append([m,eval("hig.%s"%m),eval("hig.%s"%v)])
+    menu_vote.sort(key=lambda x:x[2])
+
+    return render_template("admin.html",carousel=car, higawari=hig)
+
+
+
 #ファイルへのリンクを返すルーティング
 @app.route("/view_upload/<path:filename>")
 def view_upload(filename):

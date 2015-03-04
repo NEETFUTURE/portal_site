@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+
+{% block body %}
+<body>
+	<h1>カルーセル</h1>
+	<table border="3">
+		<tr>
+			<td>番号</td>
+			<td>h1_str</td>
+			<td>link</td>
+		</tr>
+		{% for c in carousel %}
+			<tr>
+				<td>{{loop.index}} 番</td>
+				<td>{{ c.h1_str }}</td>
+				<td>{{ c.link }}</td>
+			</tr>
+		{% endfor %}
+	</table>
+</body>
+
+{% endblock %}
