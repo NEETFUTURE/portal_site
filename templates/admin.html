@@ -12,12 +12,36 @@
 		</tr>
 		{% for c in carousel %}
 			<tr>
-				<td>{{loop.index}} 番</td>
+				<td>{{ loop.index }} 番</td>
 				<td>{{ c.h1_str }}</td>
 				<td>{{ c.link }}</td>
 			</tr>
 		{% endfor %}
 	</table>
+
+	<h1>日替わりメニュー({{ time }})</h1>
+	<form action="{{ url_for('change_higawari') }}" method="POST">
+	日付変更: <input type="text" name="day"/>
+	<table border="3">
+		<tr>
+			<td>カラム名</td>
+			<td>メニュー名</td>
+			<td>投票数</td>
+			<td>商品名変更</td>
+		</tr>
+		{% for n,m,v in higawari %}
+			<tr>
+				<td>{{ n }}</td>
+				<td>{{ m }}</td>
+				<td>{{ v }}</td>
+				<td>
+					変更: <input type="text" name="{{ n }}"/>
+				</td>
+			</tr>
+		{% endfor %}
+	</table>
+		<input type="submit" value="変更を適用する"/>
+	</form>
 </body>
 
 {% endblock %}

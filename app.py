@@ -66,7 +66,7 @@ def opinion():
     return render_template("index.html")
 
 
-@app.route("/admin",methods=["POST","GET"])
+@app.route("/admin")
 def adminpage():
     car = ormer.Carousel.get_dict()
     hig = ormer.Higawari.return1st_by_id(id=1)
@@ -76,7 +76,27 @@ def adminpage():
         menu_vote.append([m,eval("hig.%s"%m),eval("hig.%s"%v)])
     menu_vote.sort(key=lambda x:x[2])
 
-    return render_template("admin.html",carousel=car, higawari=hig)
+    return render_template("admin.html",carousel=car, time=time, higawari=menu_vote)
+
+
+@app.route("/change",methods=["POST"])
+def change_higawari():
+    col = ["a","b","c","d","e","f","d1","d2","d3","e1","e2","e3"]
+    h = ormer.Higawari.return1st_by_id(id=1)
+
+    if request.method == "POST":
+        if request.form["day"]:
+            h.time = request.form["day"]
+        for c in col:
+            if request.form[c]:
+                exec("""h.%s='%s'"""%(c,request.form[c]))
+            else:
+                pass
+        ormer.Higawari.session.commit()
+
+        return redirect(url_for("adminpage"))
+
+    return redirect(url_for("adminpage"))
 
 
 
