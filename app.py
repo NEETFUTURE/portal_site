@@ -90,6 +90,7 @@ def change_higawari():
         for c in col:
             if request.form[c]:
                 exec("""h.%s='%s'"""%(c,request.form[c]))
+                exec("""h.vote_%s=0"""%c)
             else:
                 pass
         ormer.Higawari.session.commit()
