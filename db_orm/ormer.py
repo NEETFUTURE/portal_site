@@ -5,6 +5,31 @@ from sqlalchemy.types import Integer, String
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import desc, asc
+import datetime
+
+
+def changeStringToDatetime(str_data):
+    """
+    strのフォーマットはyear/month/day/hour/minute/second
+    """
+    a = str_data.split("/")
+    a = list(map(int,a))
+    return datetime.datetime(*a)
+
+
+def changeDatetimeToString(date,num):
+    y = date.year
+    m = date.month
+    d = date.day
+    h = date.hour
+    mi = date.minute
+    s = date.second
+
+    if num == 3:
+        return "%s/%s/%s"%(y,m,d)
+    else:
+        return "%s/%s/%s/%s/%s/%s"%(y,m,d,h,mi,s)
+        
 
 Base = declarative_base()
 

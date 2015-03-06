@@ -24,6 +24,18 @@ UPLOADDIR = "upload_picture"
 app = Flask(__name__)
 app.config.from_object(__name__)
 
+
+@app.before_request
+def before_request():
+    h = ormer.Higawari.return1st_by_id(id=1)
+    data = h.time
+    data = ormer.changeStringToDatetime(data)
+    now = dtime.now()
+    if (now-data).days >= 1:
+        h.time = ormer.changeDatetimeToString(now,3)
+        ormer.Higawari.session.commit()
+        
+
 @app.route("/")
 @app.route("/index")
 def top_page():
