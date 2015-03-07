@@ -34,7 +34,7 @@ def before_request():
     if (now-data).days >= 1:
         h.time = ormer.changeDatetimeToString(now,3)
         ormer.Higawari.session.commit()
-        
+
 
 @app.route("/")
 @app.route("/index")
@@ -88,7 +88,13 @@ def adminpage():
         menu_vote.append([m,eval("hig.%s"%m),eval("hig.%s"%v)])
     menu_vote.sort(key=lambda x:x[2])
 
-    return render_template("admin.html",carousel=car, time=time, higawari=menu_vote)
+    files = os.listdir('static/img/')
+
+    return render_template("admin.html",
+                           carousel=car,
+                           time=time,
+                           higawari=menu_vote,
+                           files=files)
 
 
 @app.route("/change",methods=["POST"])
@@ -111,6 +117,14 @@ def change_higawari():
 
     return redirect(url_for("adminpage"))
 
+
+@app.route("/change_carousel",methods=["POST"])
+def change_carousel():
+    if(request.method != "POST"):
+        return redirect(url_for("adminpage"))
+    #ここにデータベース更新機能を書きたい
+
+    return redirect(url_for("adminpage"))
 
 
 #ファイルへのリンクを返すルーティング

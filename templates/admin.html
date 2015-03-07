@@ -3,21 +3,39 @@
 
 {% block body %}
 <body>
+<center>
 	<h1>カルーセル</h1>
+	<form action="{{ url_for('change_carousel') }}" method="POST">
 	<table border="3">
 		<tr>
 			<td>番号</td>
 			<td>h1_str</td>
 			<td>link</td>
+			<td>削除</td>
 		</tr>
 		{% for c in carousel %}
 			<tr>
 				<td>{{ loop.index }} 番</td>
 				<td>{{ c.h1_str }}</td>
-				<td>{{ c.link }}</td>
+				<td>
+					<select name="link_{{ loop.index }}">
+						{% for f in files %}
+						{% if c.link == f %}
+						<option selected value="{{ f }}">{{f}}</option>
+						{% else %}
+						<option value="{{ f }}">{{f}}</option>
+						{% endif %}
+						{% endfor %}
+					</select>
+				</td>
+				<input type="hidden" name="id" value="{{c.link}}">
+				<td><input type="submit" value="削除"></td>
 			</tr>
 		{% endfor %}
 	</table>
+	<input type='submit' value='更新'>
+</form>
+
 
 	<h1>日替わりメニュー({{ time }})</h1>
 	<form action="{{ url_for('change_higawari') }}" method="POST">
@@ -42,6 +60,7 @@
 	</table>
 		<input type="submit" value="変更を適用する"/>
 	</form>
+</center>
 </body>
 
 {% endblock %}

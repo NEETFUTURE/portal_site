@@ -6,12 +6,12 @@
 <head>
   <link rel="stylesheet" type="text/css" href="/static/css/index.css">
   <style>
-  </style>  
+  </style>
 </head>
 
 <body>
   <div id="header">
-  <!-- 
+  <!--
     <div class="logo">
         <h1>TDU</h1>
     </div>
@@ -61,7 +61,7 @@
                     <h4 class="modal-title cool-font" id="myModalLabel">Welcome</h4>
                   </div>
                   -->
-                  <div class="modal-body">     
+                  <div class="modal-body">
                 <!-- modal in login form -->
                 <form class="form-horizontal">
                   <div class="form-group">
@@ -105,17 +105,17 @@
         {% for c in range(1,carousel_list|length)%}
         <li data-target="#carousel-example-generic" data-slide-to="{{c}}"></li>
         {% endfor %}
-        
+
     </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
     {% for l in carousel_list %}
         {% if l["id"] == 1 %}
         <div class="item active">
-            <img src="/view_upload/{{l['link']}}" alt="slide-1">
+            <img src="/view_upload/../static/img/{{l['link']}}" alt="slide-1">
         {% else %}
         <div class="item">
-            <img src="/view_upload/{{l['link']}}" alt="slide-2">
+            <img src="/view_upload/../static/img/{{l['link']}}" alt="slide-2">
         {% endif %}
             <div class="carousel-caption"><h1>{{l["h1_str"]}}</h1></div>
         </div>
@@ -158,7 +158,7 @@
                             <div class="panel-body-right">
                                 <p>本日のお知らせ、ああああああああああああああああああああああああああああああああああああああああああ</p>
                             </div> <!-- /panel-body -->
-                    </div><!-- /panel panel-info --> 
+                    </div><!-- /panel panel-info -->
                 </div><!-- line112 /text-box -->
 
                                    <div class="text-box col-sm-6">
@@ -213,7 +213,7 @@
     <!-- /nav -->
 
 
-  <!--              
+  <!--
     <div class="clearfix"></div>
     <ul class="sns-icon list-inline">
         <li>
