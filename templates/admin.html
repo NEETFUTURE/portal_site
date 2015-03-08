@@ -4,6 +4,12 @@
 {% block body %}
 <body>
 <center>
+	<h1>ファイルアップロードテスト</h1>
+	<form method="POST" enctype="multipart/form-data" action="/upload">
+	 	<input type="file" name="file[]" multiple="">
+	 	<input type="submit" value="add">
+	</form>
+
 	<h1>カルーセル</h1>
 	<form action="{{ url_for('change_carousel') }}" method="POST">
 	<table border="3">
