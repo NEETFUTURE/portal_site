@@ -29,7 +29,7 @@ def changeDatetimeToString(date,num):
         return "%s/%s/%s"%(y,m,d)
     else:
         return "%s/%s/%s/%s/%s/%s"%(y,m,d,h,mi,s)
-        
+
 
 Base = declarative_base()
 
@@ -47,12 +47,27 @@ class Carousel(Base):
 
     session = __Session__()
 
+    #Carouselテーブルの内容をすべて辞書にまとめて返す
     @classmethod
     def get_dict(cls):
         l=[]
         for i in cls.session.query(cls).all():
             l.append({"id":i.id,"link":i.link,"h1_str":i.h1_str})
         return l
+
+    #IDで指定したレコードを削除
+    @classmethod
+    def delById(cls,id):
+        target=cls.session.query(cls).filter_by(id=id).first()
+        cls.session.delete(target)
+        cls.session.commit()
+
+    #IDで指定したカラムのリンクを更新
+    @classmethod
+    def updateLink(cls,id,link):
+        target=cls.session.query(cls).filter_by(id=id).first()
+        target.link=link
+        cls.session.commit()
 
 
 
@@ -123,5 +138,3 @@ Session = sessionmaker(\
     bind=create_engine("sqlite:///opinion.db", echo=True)\
     )
 opi_session = Session()
-
-

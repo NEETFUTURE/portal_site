@@ -123,6 +123,10 @@ def change_carousel():
     if(request.method != "POST"):
         return redirect(url_for("adminpage"))
     #ここにデータベース更新機能を書きたい
+    i=1
+    while "link_{0}".format(i) in request.form:
+        ormer.Carousel.updateLink(i,request.form["link_{0}".format(i)])
+        i+=1
 
     return redirect(url_for("adminpage"))
 

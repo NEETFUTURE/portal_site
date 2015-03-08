@@ -11,7 +11,7 @@
 			<td>番号</td>
 			<td>h1_str</td>
 			<td>link</td>
-			<td>削除</td>
+			<!--td>削除</td-->
 		</tr>
 		{% for c in carousel %}
 			<tr>
@@ -28,8 +28,8 @@
 						{% endfor %}
 					</select>
 				</td>
-				<input type="hidden" name="id" value="{{c.link}}">
-				<td><input type="submit" value="削除"></td>
+				<!--input type="hidden" name="id" value="{{c.id}}"-->
+				<!--td><input type="submit" value="削除"></td-->
 			</tr>
 		{% endfor %}
 	</table>
