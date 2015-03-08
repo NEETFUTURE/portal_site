@@ -18,7 +18,10 @@ HIGAWARI = 'higawari.db'
 OPINION = 'opinion.db'
 OSIRASE = 'osirase.db'
 UPLOADDIR = "upload_picture"
+SECRET_KEY = os.urandom(20)
 
+USERNAME = "admin"
+PASSWORD = "yuruyuriISgod"
 
 
 app = Flask(__name__)
@@ -78,8 +81,30 @@ def opinion():
     return render_template("index.html")
 
 
+@app.route("/login", methods=["POST"])
+def login():
+    username = request.form["username"]
+    password = request.form["password"]
+
+    if request.method == "POST":
+        if username==USERNAME and password==PASSWORD:
+            session["login"] = True
+            return redirect(url_for("adminpage"))
+
+    return redirect(url_for("top_page"))
+
+
+@app.route("/logout", methods=["GET"])
+def logout():
+    session.pop("login", None)
+    return redirect(url_for("top_page"))
+
+
+
 @app.route("/admin")
 def adminpage():
+    if not session["login"]:
+        return redirect(url_for("top_page"))
     car = ormer.Carousel.get_dict()
     hig = ormer.Higawari.return1st_by_id(id=1)
     time = hig.time
@@ -99,6 +124,9 @@ def adminpage():
 
 @app.route("/change",methods=["POST"])
 def change_higawari():
+    if not session["login"]:
+        return redirect(url_for("top_page"))
+
     col = ["a","b","c","d","e","f","d1","d2","d3","e1","e2","e3"]
     h = ormer.Higawari.return1st_by_id(id=1)
 
@@ -120,6 +148,9 @@ def change_higawari():
 
 @app.route("/change_carousel",methods=["POST"])
 def change_carousel():
+    if not session["login"]:
+        return redirect(url_for("top_page"))
+
     if(request.method != "POST"):
         return redirect(url_for("adminpage"))
     #ここにデータベース更新機能を書きたい
@@ -133,6 +164,8 @@ def change_carousel():
 
 @app.route("/upload", methods=["POST"])
 def upload():
+    if not session["login"]:
+        return redirect(url_for("top_page"))
     upload_file = request.files.getlist("file[]")
     #print("*"*20)
     for f in upload_file:
