@@ -127,6 +127,17 @@ def change_carousel():
     return redirect(url_for("adminpage"))
 
 
+@app.route("/upload", methods=["POST"])
+def upload():
+    upload_file = request.files.getlist("file[]")
+    #print("*"*20)
+    for f in upload_file:
+        #print(f.filename)
+        f.save(os.path.join(UPLOADDIR,f.filename))
+    #print("*"*20)
+    return redirect(url_for("adminpage"))
+
+
 #ファイルへのリンクを返すルーティング
 @app.route("/view_upload/<path:filename>")
 def view_upload(filename):
