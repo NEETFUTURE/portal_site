@@ -22,7 +22,7 @@
 		{% for c in carousel %}
 			<tr>
 				<td>{{ loop.index }} 番</td>
-				<td>{{ c.h1_str }}</td>
+				<td><input type='text' name='h1_str_{{ loop.index }}' value='{{c.h1_str}}'></td>
 				<td>
 					<select name="link_{{ loop.index }}">
 						{% for f in files %}

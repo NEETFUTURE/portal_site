@@ -20,7 +20,7 @@ OSIRASE = 'osirase.db'
 UPLOADDIR = "upload_picture"
 SECRET_KEY = os.urandom(20)
 
-USERNAME = "admin"
+USERNAME = "admin@gmail.com"
 PASSWORD = "yuruyuriISgod"
 
 
@@ -153,10 +153,13 @@ def change_carousel():
 
     if(request.method != "POST"):
         return redirect(url_for("adminpage"))
-    #ここにデータベース更新機能を書きたい
+
+    #データベース更新
     i=1
     while "link_{0}".format(i) in request.form:
-        ormer.Carousel.updateLink(i,request.form["link_{0}".format(i)])
+        ormer.Carousel.updateLink(i,
+                                  request.form["h1_str_{0}".format(i)],
+                                  request.form["link_{0}".format(i)])
         i+=1
 
     return redirect(url_for("adminpage"))

@@ -62,12 +62,14 @@ class Carousel(Base):
         cls.session.delete(target)
         cls.session.commit()
 
-    #IDで指定したカラムのリンクを更新
+    #IDで指定したカラムの文字列とリンクを更新
     @classmethod
-    def updateLink(cls,id,link):
+    def updateLink(cls,id,h1_str,link):
         target=cls.session.query(cls).filter_by(id=id).first()
+        target.h1_str=h1_str
         target.link=link
         cls.session.commit()
+
 
 
 
