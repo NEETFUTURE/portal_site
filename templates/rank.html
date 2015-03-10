@@ -2,9 +2,17 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<style>
+    #center01 {
+    text-align: center;
+        /* 要素の幅を均等 */
+        margin: 0 auto;
+    }
+</style>
+
 <script type=text/javascript>
 	$(function(){
-		$(".voting").click(function(){
+		$(".btn").click(function(){
       		var json = JSON.stringify($(this).attr("id"));
       		$.ajax({
         		type:'POST',
@@ -18,7 +26,7 @@
         			// $("."+id).text(text+" -> 投票数:"+vote_num)
               var vote_num = $.parseJSON(data)
               var id = $.parseJSON(json)
-              $("h4"+"."+id).text(vote_num)
+              $("h3"+"."+id).text("投票数:"+vote_num)
         		}
       		});
       		return false;
@@ -26,16 +34,142 @@
   	});
 </script>
 <body>
-<h1>ランキング仮ページ</h1>
-  <h2>{{time}}</h2>
-  {% for n,m,v in menu_vote %}
-    <h4>{{m}}</h4>
-    <!--まだ画像は用意してないけど、定食aならa.jpgをupload_pictureに用意しておいて表示-->
-    <!-- <img src="/view_upload/{{n}}.jpg" width="100" height="100"></img> -->
-    <h4 class="{{n}}">{{v}}</h4>
-    <input type="submit" name="submit" value="{{m}}に投票する" id="{{n}}" class="voting">
-    <HR>
-  {% endfor %}
+  <div id="header">
+  <!--
+    <div class="logo">
+        <h1>TDU</h1>
+    </div>
+    <!-- /logo -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+            <a class="navbar-brand cool-font" href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Cafe of University</a>
+
+            <!-- 画面サイズが小さいときに折りたたまれる処理 -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <!-- <span class="icon-bar"></span> -->
+                </button>
+                <span class="navbar-brand visible-xs" href="#">めにゅ〜</span>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="first">
+                        <a href="#">Top</a>
+                    </li>
+                    <li>
+                        <a href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a href="#">Rnaking</a>
+                    </li>
+                    <li>
+                        <a href="#">other</a>
+                    </li>
+                    <li>
+                        <a href="#">other</a>
+                    </li>
+                </ul>
+
+        <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                <!--
+                  <div class="modal-header bg-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title cool-font" id="myModalLabel">Welcome</h4>
+                  </div>
+                  -->
+                  <div class="modal-body">
+                <!-- modal in login form -->
+                <form class="form-horizontal" action="{{url_for('login')}}" method="POST">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" name="username" placeholder="reimu">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="inputPassword3" name="password" placeholder="marisa">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Sign in</button>
+                    </div>
+                  </div>
+                </form> <!-- /modal in login form -->
+                  </div>
+                  <!--
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div> -->
+                </div>
+              </div>
+            </div><!-- /modal -->
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- container -->
+    </nav><!-- /nav -->
+</div>
+    <h2>{{time}}</h2>
+    <div class="container">
+        <div class="page-header">
+        <h1>
+            <span class="glyphicon glyphicon-grain " aria-hidden="true"></span> メニューランキング
+        </h1>
+
+        <p>ここでは学生食堂のメニューの中でも特に人気の高いものを紹介します。誰でも、いつでも、どこでも、自由に投票できるので、もしあなたが好きなメニューがあったら投票してみてください。</p>
+        </div><!-- /page-header -->
+        {% for n,m,v in menu_vote %}
+        <div class="panel panel-default">
+
+        <div class="panel-heading">
+            {% if n in ["a","b","c","d","e","f"] %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>定食</strong>
+            {% elif n in ["d1", "d2", "d3"] %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>どんぶり</strong>
+            {% else %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>その他</strong>
+            {% endif %}
+        </div>
+
+        <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-6 col-md-3">
+                <a href="#" class="thumbnail"><img src="/view_upload/test.jpg" alt="..."></a>
+                <button type="submit" class="btn btn-danger" id="{{n}}">
+                    <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> 投票する
+                </button>
+            </div><!-- col-xs-6 col-md-3 -->
+            {% if loop.index == 1 %}
+                <img src="/static/img/L1.png" width="35" height="35" alt="1">
+            {% elif loop.index == 2 %}
+                <img src="/static/img/L2.png" width="35" height="35" alt="1">
+            {% elif loop.index == 3 %}
+                <img src="/static/img/L3.png" width="35" height="35" alt="1">
+            {% endif %}
+            <strong>　{{m}} </strong>
+            <abbr title="attribute"> ¥350</abbr>
+            <p><h3 class="{{n}}">投票数:{{v}}</h3></p>
+
+        </div><!-- /row -->
+        </div><!-- /panelbody -->
+        </div><!-- /pamel -->
+    </div><!-- /container -->
+    {% endfor %}
+
+
 </body>
 
 {% endblock %}
