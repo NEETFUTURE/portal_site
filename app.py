@@ -54,6 +54,7 @@ def higawari():
 def rank():
     h = ormer.Higawari.return1st_by_id(id=1)
     time = h.time
+    time = time.replace("/","_")
     menu_vote = []
     for m,v in zip(dir(h)[32:45],dir(h)[49:61]):
         menu_vote.append([m,eval("h.%s"%m),eval("h.%s"%v)])
