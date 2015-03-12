@@ -28,15 +28,15 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 
 
-@app.before_request
-def before_request():
-    h = ormer.Higawari.return1st_by_id(id=1)
-    data = h.time
-    data = ormer.changeStringToDatetime(data)
-    now = dtime.now()
-    if (now-data).days >= 1:
-        h.time = ormer.changeDatetimeToString(now,3)
-        ormer.Higawari.session.commit()
+# @app.before_request
+# def before_request():
+#     h = ormer.Higawari.return1st_by_id(id=1)
+#     data = h.time
+#     data = ormer.changeStringToDatetime(data)
+#     now = dtime.now()
+#     if (now-data).days >= 1:
+#         h.time = ormer.changeDatetimeToString(now,3)
+#         ormer.Higawari.session.commit()
 
 
 @app.route("/")
@@ -52,29 +52,43 @@ def higawari():
 
 @app.route("/rank")
 def rank():
-    h = ormer.Higawari.return1st_by_id(id=1)
-    time = h.time
-    time = time.replace("/","_")
-    menu_vote = []
-    for m,v in zip(dir(h)[32:45],dir(h)[49:61]):
-        menu_vote.append([m,eval("h.%s"%m),eval("h.%s"%v)])
+    # h = ormer.Higawari.return1st_by_id(id=1)
+    # time = h.time
+    # time = time.replace("/","_")
+    # menu_vote = []
+    # for m,v in zip(dir(h)[32:45],dir(h)[49:61]):
+    #     menu_vote.append([m,eval("h.%s"%m),eval("h.%s"%v)])
 
-    menu_vote.sort(key=lambda x:x[2])
+    # menu_vote.sort(key=lambda x:x[2])
 
-    return render_template("rank.html",time=time,menu_vote=menu_vote[::-1])
+    # return render_template("rank.html",time=time,menu_vote=menu_vote[::-1])
 
+    #today = ormer.changeDatetimeToString(dtime.now(),3)
+    today = "2015/4/1"
+    menu = ormer.Higawari2.return_desclist_by_date(today)
+
+    return render_template("rank.html",
+                           time=today.replace("/","_"), 
+                           menu=menu)
 
 @app.route("/connect", methods=["POST"])
 def connect():
-    g = request.json
-    h = ormer.Higawari.return1st_by_id(id=1)
+    # g = request.json
+    # h = ormer.Higawari.return1st_by_id(id=1)
 
-    #exec使いたくないけどデータベースのカラム上これの方がシンプル。。。
-    exec("""h.vote_%s+=1"""%g)
-    ormer.Higawari.session.commit()
+    # #exec使いたくないけどデータベースのカラム上これの方がシンプル。。。
+    # exec("""h.vote_%s+=1"""%g)
+    # ormer.Higawari.session.commit()
 
-    #これまたevalも使いたくないんだけど(ry
-    return Response(json.dumps(eval("h.vote_%s"%g)))
+    # #これまたevalも使いたくないんだけど(ry
+    # return Response(json.dumps(eval("h.vote_%s"%g)))
+
+    js = request.json
+    h = ormer.Higawari2.return_1st_by_identify(js)
+    h.vote += 1
+    ormer.Higawari2.session.commit()
+
+    return Response(json.dumps(h.vote))
 
 
 @app.route("/opinion")

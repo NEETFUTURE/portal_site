@@ -128,14 +128,14 @@
 
         <p>ここでは学生食堂のメニューの中でも特に人気の高いものを紹介します。誰でも、いつでも、どこでも、自由に投票できるので、もしあなたが好きなメニューがあったら投票してみてください。</p>
         </div><!-- /page-header -->
-        {% for n,m,v in menu_vote %}
+        {% for h in menu %}
         <div class="panel panel-default">
 
         <div class="panel-heading">
-            {% if n in ["a","b","c","d","e","f"] %}
+            {% if h.identify in ["a","b","c","d","e","f"] %}
                 <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
                 <strong>定食</strong>
-            {% elif n in ["d1", "d2", "d3"] %}
+            {% elif h.identify in ["d1", "d2", "d3"] %}
                 <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
                 <strong>どんぶり</strong>
             {% else %}
@@ -147,21 +147,15 @@
         <div class="panel-body">
         <div class="row">
             <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail"><img src="/view_upload/{{time}}_{{n}}.jpg" alt="..."></a>
-                <button type="submit" class="btn btn-danger" id="{{n}}">
+                <a href="#" class="thumbnail"><img src="/view_upload/{{time}}_{{h.identify}}.jpg" alt="..."></a>
+                <button type="submit" class="btn btn-danger" id="{{h.identify}}">
                     <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> 投票する
                 </button>
             </div><!-- col-xs-6 col-md-3 -->
-            {% if loop.index == 1 %}
-                <img src="/static/img/L1.png" width="35" height="35" alt="1">
-            {% elif loop.index == 2 %}
-                <img src="/static/img/L2.png" width="35" height="35" alt="1">
-            {% elif loop.index == 3 %}
-                <img src="/static/img/L3.png" width="35" height="35" alt="1">
-            {% endif %}
-            <strong>　{{m}} </strong>
-            <abbr title="attribute"> ¥350</abbr>
-            <p><h3 class="{{n}}">投票数:{{v}}</h3></p>
+            <img src="/static/img/L{{loop.index}}.png" width="35" height="35" alt="1">
+            <strong>　{{h.menu}} </strong>
+            <abbr title="attribute">¥{{h.price}} </abbr>
+            <p><h3 class="{{h.identify}}">投票数:{{h.vote}}</h3></p>
 
         </div><!-- /row -->
         </div><!-- /panelbody -->
