@@ -24,7 +24,7 @@ OSIRASE = 'osirase.db'
 UPLOADDIR = "upload_picture"
 
 POR_MAIL = 'gakusyoku@gmail.com'
-POR_MAIL_PASS = 'password'
+POR_MAIL_PASS = 'hogehoge'
 
 
 app = Flask(__name__)
@@ -93,17 +93,16 @@ def opinion():
 #reCAPCHAを使って認証＆メール送信
 @app.route("/sendopinion",methods=["POST"])
 def sendopinion():
-#    if(request.request.args.get("g-recaptcha-response")==""):
-#        return "画像認証を受けてください"
+    if(request.form["g-recaptcha-response"]==""):
+        return "画像認証を受けてください"
 
-#    url="https://www.google.com/recaptcha/api/siteverify"
-#    keys={"secret":"しーくれっときー",
-#          "response":request.args.get("g-recaptcha-response")}
-#    req=urllib.request.Request(url,keys)
-#    res=urllib.request.urlopen(req)
-#    d_data=json.loads(res.read().decode("utf-8"))
-#    if(d_data[success]==False):
-#        return d_data["error-codes"][1]+"\n"+d_data["error-codes"][2]
+    url="https://www.google.com/recaptcha/api/siteverify"
+    keys={"secret":"6LdLpAMTAAAAAFUPa-eYkMNB-GCCmTxJhkwBMFni",
+          "response":request.form["g-recaptcha-response"]}
+    res=urllib.request.urlopen(url+"?"+urllib.parse.urlencode(keys))
+    d_data=json.loads(res.read().decode("utf-8"))
+    if(d_data["success"]==False):
+        return types(d_data["success"])
 
 
     formdata = {"title" :"要望",
@@ -132,4 +131,4 @@ def view_upload(filename):
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", debug=True)
+    app.run(host="127.0.0.1", debug=True)
