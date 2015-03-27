@@ -11,27 +11,27 @@
 </style>
 
 <script type=text/javascript>
-	$(function(){
-		$(".btn").click(function(){
-      		var json = JSON.stringify($(this).attr("id"));
-      		$.ajax({
-        		type:'POST',
-        		url:'{{ url_for('connect') }}',
-        		data:json,
-        		contentType:'application/json',
-        		success: function(data){
-        			// var vote_num = $.parseJSON(data)
-        			// var id = $.parseJSON(json)
-        			// var text = $("."+id).text().split(" ")[0]
-        			// $("."+id).text(text+" -> 投票数:"+vote_num)
-              var vote_num = $.parseJSON(data)
-              var id = $.parseJSON(json)
-              $("h3"+"."+id).text("投票数:"+vote_num)
-        		}
-      		});
-      		return false;
-    	});
-  	});
+  $(function(){
+    $(".btn").click(function(){
+          var json = JSON.stringify($(this).attr("id")+"*"+"{{time}}");
+          $.ajax({
+            type:'POST',
+            url:"{{ url_for('connect') }}",
+            data:json,
+            contentType:'application/json',
+            success: function(data){
+                // var vote_num = $.parseJSON(data)
+                // var id = $.parseJSON(json)
+                // var text = $("."+id).text().split(" ")[0]
+                // $("."+id).text(text+" -> 投票数:"+vote_num)
+                var vote_num = $.parseJSON(data)
+                var id = $.parseJSON(json).split("*")[0]
+                $("h3"+"."+id).text("投票数:"+vote_num)
+            }
+          });
+          return false;
+      });
+    });
 </script>
 <body>
   <div id="header">
@@ -152,8 +152,10 @@
                     <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> 投票する
                 </button>
             </div><!-- col-xs-6 col-md-3 -->
+            {% if loop.index < 4 %}
             <img src="/static/img/L{{loop.index}}.png" width="35" height="35" alt="1">
-            <strong>　{{h.menu}} </strong>
+            {% endif %}
+            <strong>　{{h.name}} </strong>
             <abbr title="attribute">¥{{h.price}} </abbr>
             <p><h3 class="{{h.identify}}">投票数:{{h.vote}}</h3></p>
 
@@ -162,8 +164,6 @@
         </div><!-- /pamel -->
     </div><!-- /container -->
     {% endfor %}
-
-
 </body>
 
 {% endblock %}
