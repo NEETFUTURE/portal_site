@@ -88,8 +88,8 @@ def connect():
     # #これまたevalも使いたくないんだけど(ry
     # return Response(json.dumps(eval("h.vote_%s"%g)))
 
-    js = request.json
-    h = ormer.Higawari2.return_1st_by_identify(js)
+    js = request.json.split("*")
+    h = ormer.Higawari2.return_by_IdentandDate(js[0],js[1].replace("_","/"))
     h.vote += 1
     ormer.Higawari2.session.commit()
 
