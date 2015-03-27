@@ -140,6 +140,33 @@ class Higawari2(Base):
         return cls.session.query(cls).filter_by(identify=identify).first()
 
 
+    @classmethod
+    def return_by_IdentandDate(cls, identify, str_date):
+        return cls.session.query(cls).filter_by(identify=identify,time=str_date).first()
+
+
+class Bussday(Base):
+    __tablename__ = "bussday"
+    __Session__ = sessionmaker(\
+    bind=create_engine("sqlite:///bussday.db", echo=True)\
+    )
+    id = Column(Integer(), primary_key=True)
+    time = Column(String())
+
+    session = __Session__()
+
+    @classmethod
+    def hoge(cls, now, num):
+        dates = []
+        i = cls.session.query(cls).filter_by(time=now).first().id
+
+        for val in range(i, num+1):
+            d = cls.session.query(cls).filter_by(id=val).first().time
+            dates.append(d)
+
+        return dates
+
+
 
 class Osirase(Base):
     __tablename__ = "osirase"
