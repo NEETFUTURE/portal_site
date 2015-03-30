@@ -115,10 +115,45 @@ class Higawari(Base):
 
 class Osirase(Base):
     __tablename__ = "osirase"
+    __Session__ = sessionmaker(\
+    bind=create_engine("sqlite:///osirase.db", echo=True)\
+    )
     time = Column(String())
     id = Column(Integer(), primary_key=True)
     title = Column(String())
+    link = Column(String())
 
+    session = __Session__()
+
+    @classmethod
+    def delData(cls,id):
+        target=cls.session.query(cls).filter_by(id=id).first()
+        cls.session.delete(target)
+        cls.session.commit()
+
+    @classmethod
+    def getData(cls,id):
+        return cls.session.query(cls).filter_by(id=id).first()
+
+    @classmethod
+    def getAllData(cls):
+        return cls.session.query(cls).all()
+
+    @classmethod
+    def setData(cls,title,link):
+        target=cls.session.query(cls).filter_by(id=id).first()
+        target.time=datetime.date.today().strftime("%Y/%m/%d")
+        target.title=title
+        target.link=link
+        cls.session.commit()
+
+    @classmethod
+    def addData(cls,title,link):
+        ob=Osirase(title=title,
+                   link=link,
+                   time=datetime.date.today().strftime("%Y/%m/%d"))
+        cls.session.add(ob)
+        cls.session.commit()
 
 class Opinion(Base):
     __tablename__ = "opinion"

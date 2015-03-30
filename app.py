@@ -42,7 +42,9 @@ def before_request():
 @app.route("/")
 @app.route("/index")
 def top_page():
-    return render_template("top.html",carousel_list=ormer.Carousel.get_dict())
+    return render_template("top.html",
+                           carousel_list=ormer.Carousel.get_dict(),
+                           osirase_list=ormer.Osirase.getAllData())
 
 
 @app.route("/higawari")
@@ -120,7 +122,9 @@ def adminpage():
                            carousel=car,
                            time=time,
                            higawari=menu_vote,
-                           files=files)
+                           files=files,
+                           osirase=ormer.Osirase.getAllData(),
+                           ufiles=os.listdir(UPLOADDIR))
 
 
 @app.route("/change",methods=["POST"])
@@ -165,6 +169,15 @@ def change_carousel():
 
     return redirect(url_for("adminpage"))
 
+@app.route("/del_osirase",methods=["POST"])
+def del_osirase():
+    ormer.Osirase.delData(request.form['del'])
+    return redirect(url_for("adminpage"))
+
+@app.route("/add_osirase",methods=["POST"])
+def add_osirase():
+    ormer.Osirase.addData(request.form['osi_title'],request.form['osi_link'])
+    return redirect(url_for("adminpage"))
 
 @app.route("/upload", methods=["POST"])
 def upload():

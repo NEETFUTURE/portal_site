@@ -66,6 +66,45 @@
 	</table>
 		<input type="submit" value="変更を適用する"/>
 	</form>
+
+	<h1>おしらせ</h1>
+
+	<form action="{{ url_for('add_osirase') }}" method="POST">
+		<p>News<input type="text" name="osi_title"/></p>
+		<p>PDF
+			<select name="osi_link">
+				<option selected value="">無し</option>
+				{% for f in ufiles %}
+				<option value="{{ f }}">{{f}}</option>
+				{% endfor %}
+			</select>
+		</p>
+		<p><input type="submit" value="投稿"/></p>
+	</form>
+	<table border="3">
+		<tr>
+			<td>id</td>
+			<td>News</td>
+			<td>日付</td>
+			<td>link</td>
+			<td>操作</td>
+		</tr>
+		{%for i in osirase%}
+			<tr>
+				<td>{{i.id}}</td>
+				<td>{{i.title}}</td>
+				<td>{{i.time}}</td>
+				<td>{{i.link}}</td>
+				<td>
+					<form action="{{ url_for('del_osirase') }}" method="POST">
+						<input type="hidden" name="del" value={{i.id}}>
+						<input type="submit" value="削除">
+					</form>
+				</td>
+			</tr>
+		{%endfor%}
+	</table>
+
 </center>
 </body>
 

@@ -182,30 +182,16 @@
                                             <th>Data</th>
                                             <th>News</th>
                                         </tr>
+                                        {% for s in osirase_list%}
                                         <tr>
-                                            <td>2015/3/11</td>
-                                            <td>唐揚げ丼が売り切れました</td>
+                                            <td>{{s.time}}</td>
+                                            {% if s.link=="" %}
+                                            <td>{{s.title}}</td>
+                                            {% else %}
+                                            <td><a href="/view_upload/{{s.link}}">{{s.title}}</a></td>
+                                            {% endif %}
                                         </tr>
-                                        <tr>
-                                            <td>2015/3/11</td>
-                                            <td>新しいメニューが追加されました！</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2015/3/11</td>
-                                            <td>文章文章文章文章文章文章文章文章文章</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2015/3/11</td>
-                                            <td>文章文章文章文章文章文章文章文章文章文章</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2015/3/11</td>
-                                            <td>文章文章文章文章文章文章文章文章文章文章</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2015/3/11</td>
-                                            <td>文章文章文章文章文章文章文章文章文章文章</td>
-                                        </tr>
+                                        {% endfor %}
                                     </table>
                             </div> <!-- /panel-body -->
                     </div><!-- /panel panel-info -->
