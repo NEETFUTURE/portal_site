@@ -152,9 +152,13 @@
 		font-weight: bold;
 	}
 	*/
+	.panel-body-top {
+		height: auto;
+		overflow : scroll;
+	}
 	.panel-body-right {
 		font-size: 18px;
-		height: 200px;
+		height: 230px;
 		overflow: auto;
 	}
 	.panel-body-right-under {
@@ -162,10 +166,11 @@
 		height: 235px;
 		overflow: auto;
 	}
-	.panel-body > p {
+	
+	.panel-body /*> p*/ {
 		font-size: 18px;
-		height: 500px;
-		/* textboxをはみ出した時スクロールにきりかえる */
+		height: 560px;
+		textboxをはみ出した時スクロールにきりかえる 
 		overflow: auto;
 	}
 
