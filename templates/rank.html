@@ -134,13 +134,28 @@
         <div class="panel-heading">
             {% if h.identify in ["a","b","c","d","e","f"] %}
                 <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-                <strong>定食</strong>
-            {% elif h.identify in ["d1", "d2", "d3"] %}
+                <strong>日替わり定食</strong>
+            {% elif h.identify == "r" %}
                 <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-                <strong>どんぶり</strong>
+                <strong>日替わりラーメン</strong>
+            {% elif h.identify == "pa" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりパスタ</strong>
+            {% elif h.identify == "udo" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりうどん</strong>
+            {% elif h.identify == "soba" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりそば</strong>
+            {% elif h.identify == "ra" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりラーメンA</strong>
+            {% elif h.identify == "rb" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりラーメンB</strong>
             {% else %}
                 <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-                <strong>その他</strong>
+                <strong>null</strong>
             {% endif %}
         </div>
 

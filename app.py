@@ -30,7 +30,8 @@ app.config.from_object(__name__)
 dates = []
 prev = False
 today = ""
-iden_list = ["default","a","b","c","d","e","f","d1","d2","d3","e1","e2","e3"]
+iden_list = ["default","a","b","c","d","e","f","r",
+             "pa","udo","soba","ra","rb"]
 
 
 # @app.before_request

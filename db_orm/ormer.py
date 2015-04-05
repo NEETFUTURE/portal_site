@@ -8,6 +8,10 @@ from sqlalchemy import desc, asc
 import datetime
 
 
+iden_list_2 = ["a","b","c","d","e","f","r"]
+iden_list_m2 = ["pa","udo","soba","ra","rb"]
+
+
 def changeStringToDatetime(str_data):
     """
     strのフォーマットはyear/month/day/hour/minute/second
@@ -143,6 +147,23 @@ class Higawari2(Base):
     @classmethod
     def return_by_IdentandDate(cls, identify, str_date):
         return cls.session.query(cls).filter_by(identify=identify,time=str_date).first()
+
+
+    @classmethod
+    def hogehoge(cls, str_date):
+        gaku_2 = []
+        gaku_m2 = []
+        for name in iden_list_2:
+            try:
+                gaku_2.append(cls.return_by_IdentandDate(name,str_date).name)
+            except:
+                pass
+        for name in iden_list_m2:
+            try:
+                gaku_m2.append(cls.return_by_IdentandDate(name,str_date).name)
+            except:
+                pass
+        return gaku_2,gaku_m2
 
 
 class Bussday(Base):
