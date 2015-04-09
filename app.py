@@ -55,16 +55,22 @@ def sendmail(data):
     return True
 
 
+dates = []
+prev = False
+today = ""
+iden_list = ["default","a","b","c","d","e","f","r",
+             "pa","udo","soba","ra","rb"]
 
-@app.before_request
-def before_request():
-    h = ormer.Higawari.return1st_by_id(id=1)
-    data = h.time
-    data = ormer.changeStringToDatetime(data)
-    now = dtime.now()
-    if (now-data).days >= 1:
-        h.time = ormer.changeDatetimeToString(now,3)
-        ormer.Higawari.session.commit()
+
+# @app.before_request
+# def before_request():
+#     h = ormer.Higawari.return1st_by_id(id=1)
+#     data = h.time
+#     data = ormer.changeStringToDatetime(data)
+#     now = dtime.now()
+#     if (now-data).days >= 1:
+#         h.time = ormer.changeDatetimeToString(now,3)
+#         ormer.Higawari.session.commit()
 
 
 @app.route("/")
@@ -82,29 +88,43 @@ def higawari():
 
 @app.route("/rank")
 def rank():
-    h = ormer.Higawari.return1st_by_id(id=1)
-    time = h.time
-    time = time.replace("/","_")
-    menu_vote = []
-    for m,v in zip(dir(h)[32:45],dir(h)[49:61]):
-        menu_vote.append([m,eval("h.%s"%m),eval("h.%s"%v)])
+    # h = ormer.Higawari.return1st_by_id(id=1)
+    # time = h.time
+    # time = time.replace("/","_")
+    # menu_vote = []
+    # for m,v in zip(dir(h)[32:45],dir(h)[49:61]):
+    #     menu_vote.append([m,eval("h.%s"%m),eval("h.%s"%v)])
 
-    menu_vote.sort(key=lambda x:x[2])
+    # menu_vote.sort(key=lambda x:x[2])
 
-    return render_template("rank.html",time=time,menu_vote=menu_vote[::-1])
+    # return render_template("rank.html",time=time,menu_vote=menu_vote[::-1])
 
+    #today = ormer.changeDatetimeToString(dtime.now(),3)
+    today = "2015/3/23" #テスト用の日付
+    menu = ormer.Higawari2.return_desclist_by_date(today)
+
+    return render_template("rank.html",
+                           time=today.replace("/","_"), 
+                           menu=menu)
 
 @app.route("/connect", methods=["POST"])
 def connect():
-    g = request.json
-    h = ormer.Higawari.return1st_by_id(id=1)
+    # g = request.json
+    # h = ormer.Higawari.return1st_by_id(id=1)
 
-    #exec使いたくないけどデータベースのカラム上これの方がシンプル。。。
-    exec("""h.vote_%s+=1"""%g)
-    ormer.Higawari.session.commit()
+    # #exec使いたくないけどデータベースのカラム上これの方がシンプル。。。
+    # exec("""h.vote_%s+=1"""%g)
+    # ormer.Higawari.session.commit()
 
-    #これまたevalも使いたくないんだけど(ry
-    return Response(json.dumps(eval("h.vote_%s"%g)))
+    # #これまたevalも使いたくないんだけど(ry
+    # return Response(json.dumps(eval("h.vote_%s"%g)))
+
+    js = request.json.split("*")
+    h = ormer.Higawari2.return_by_IdentandDate(js[0],js[1].replace("_","/"))
+    h.vote += 1
+    ormer.Higawari2.session.commit()
+
+    return Response(json.dumps(h.vote))
 
 
 @app.route("/opinion")
@@ -163,48 +183,91 @@ def logout():
     return redirect(url_for("top_page"))
 
 
-
-@app.route("/admin")
+@app.route("/admin", methods=["POST", "GET"])
 def adminpage():
-    if not session["login"]:
+    global dates
+    global today
+    global prev
+
+    try:
+        if not session["login"]:
+            return redirect(url_for("top_page"))
+    except:
         return redirect(url_for("top_page"))
+
     car = ormer.Carousel.get_dict()
-    hig = ormer.Higawari.return1st_by_id(id=1)
-    time = hig.time
-    menu_vote = []
-    for m,v in zip(dir(hig)[32:45],dir(hig)[49:61]):
-        menu_vote.append([m,eval("hig.%s"%m),eval("hig.%s"%v)])
-    menu_vote.sort(key=lambda x:x[2])
+
+    if "date" in request.form:
+        today = request.form["date"]
+    elif prev:
+        prev = False
+        pass
+    else:
+        #today = ormer.changeDatetimeToString(dtime.now(),3)
+        today = "2015/3/21" #テスト用の日付
+        dates = ormer.Bussday.hoge(today, 4)
+
+    menu = ormer.Higawari2.return_desclist_by_date(today)
 
     files = os.listdir('static/img/')
 
     return render_template("admin.html",
+                           today=today,
                            carousel=car,
-                           time=time,
-                           higawari=menu_vote,
                            files=files,
                            osirase=ormer.Osirase.getAllData(),
-                           ufiles=os.listdir(UPLOADDIR))
+                           ufiles=os.listdir(UPLOADDIR),
+                           dates=dates,
+                           menu=menu,
+                           i_list=iden_list)
 
 
 @app.route("/change",methods=["POST"])
 def change_higawari():
-    if not session["login"]:
+    global today
+    global prev
+    del_list = []
+
+    try:
+        if not session["login"]:
+            return redirect(url_for("top_page"))
+    except:
         return redirect(url_for("top_page"))
 
-    col = ["a","b","c","d","e","f","d1","d2","d3","e1","e2","e3"]
-    h = ormer.Higawari.return1st_by_id(id=1)
-
     if request.method == "POST":
-        if request.form["day"]:
-            h.time = request.form["day"]
-        for c in col:
-            if request.form[c]:
-                exec("""h.%s='%s'"""%(c,request.form[c]))
-                exec("""h.vote_%s=0"""%c)
-            else:
+
+        del_list = request.form.getlist("ch")
+        #print("*"*30)
+        #print(del_list)
+        for iden in del_list:
+            h = ormer.Higawari2.return_by_IdentandDate(iden, request.form["today"])
+            ormer.Higawari2.session.delete(h)
+        ormer.Higawari2.session.commit()
+
+        for i in range(0, 10):
+            if request.form["s_"+str(i)] == "default" or request.form["s_"+str(i)] in del_list:
                 pass
-        ormer.Higawari.session.commit()
+            else:
+                ide = request.form["s_"+str(i)]
+                d = request.form["today"]
+                name = request.form["m_"+str(i)]
+                try:
+                    price = int(request.form["p_"+str(i)])
+                    vote = int(request.form["v_"+str(i)])
+                except:
+                    price = vote = 0
+                h = ormer.Higawari2.return_by_IdentandDate(ide, d)
+                if h:
+                    h.name = name
+                    h.price = price
+                    h.vote = vote
+                    ormer.Higawari2.session.commit()
+                else:
+                    h = ormer.Higawari2(identify=ide,time=d,name=name,price=price)
+                    ormer.Higawari2.session.add(h)
+                    ormer.Higawari2.session.commit()
+        today = request.form["today"]
+        prev = True
 
         return redirect(url_for("adminpage"))
 

@@ -8,6 +8,10 @@ from sqlalchemy import desc, asc
 import datetime
 
 
+iden_list_2 = ["a","b","c","d","e","f","r"]
+iden_list_m2 = ["pa","udo","soba","ra","rb"]
+
+
 def changeStringToDatetime(str_data):
     """
     strのフォーマットはyear/month/day/hour/minute/second
@@ -73,44 +77,116 @@ class Carousel(Base):
 
 
 
-class Higawari(Base):
-    __tablename__ = "higawari"
+# class Higawari(Base):
+#     __tablename__ = "higawari"
+#     __Session__ = sessionmaker(\
+#     bind=create_engine("sqlite:///higawari.db", echo=True)\
+#     )
+#     a   = Column(String(), nullable=False)
+#     b   = Column(String(), nullable=False)
+#     c   = Column(String(), nullable=False)
+#     d   = Column(String(), nullable=False)
+#     e   = Column(String(), nullable=False)
+#     f   = Column(String(), nullable=False)
+#     d1  = Column(String(), nullable=False)
+#     d2  = Column(String(), nullable=False)
+#     d3  = Column(String(), nullable=False)
+#     e1  = Column(String())
+#     e2  = Column(String())
+#     e3  = Column(String())
+
+#     vote_a  = Column(Integer(), default=0)
+#     vote_b  = Column(Integer(), default=0)
+#     vote_c  = Column(Integer(), default=0)
+#     vote_d  = Column(Integer(), default=0)
+#     vote_e  = Column(Integer(), default=0)
+#     vote_f  = Column(Integer(), default=0)
+#     vote_d1 = Column(Integer(), default=0)
+#     vote_d2 = Column(Integer(), default=0)
+#     vote_d3 = Column(Integer(), default=0)
+#     vote_e1 =  Column(Integer(), default=0)
+#     vote_e2 =  Column(Integer(), default=0)
+#     vote_e3 =  Column(Integer(), default=0)
+
+#     session = __Session__()
+
+#     @classmethod
+#     def return1st_by_id(cls,id):
+#         return cls.session.query(cls).filter_by(id=id).first()
+
+
+class Higawari2(Base):
+    __tablename__ = "higawari2"
     __Session__ = sessionmaker(\
-    bind=create_engine("sqlite:///higawari.db", echo=True)\
+    bind=create_engine("sqlite:///higawari2.db", echo=True)\
     )
     id = Column(Integer(), primary_key=True)
-    time = Column(String(), nullable=False)
-    a   = Column(String(), nullable=False)
-    b   = Column(String(), nullable=False)
-    c   = Column(String(), nullable=False)
-    d   = Column(String(), nullable=False)
-    e   = Column(String(), nullable=False)
-    f   = Column(String(), nullable=False)
-    d1  = Column(String(), nullable=False)
-    d2  = Column(String(), nullable=False)
-    d3  = Column(String(), nullable=False)
-    e1  = Column(String())
-    e2  = Column(String())
-    e3  = Column(String())
-
-    vote_a  = Column(Integer(), default=0)
-    vote_b  = Column(Integer(), default=0)
-    vote_c  = Column(Integer(), default=0)
-    vote_d  = Column(Integer(), default=0)
-    vote_e  = Column(Integer(), default=0)
-    vote_f  = Column(Integer(), default=0)
-    vote_d1 = Column(Integer(), default=0)
-    vote_d2 = Column(Integer(), default=0)
-    vote_d3 = Column(Integer(), default=0)
-    vote_e1 =  Column(Integer(), default=0)
-    vote_e2 =  Column(Integer(), default=0)
-    vote_e3 =  Column(Integer(), default=0)
+    time = Column(String())
+    name = Column(String())
+    identify = Column(String())
+    price = Column(Integer())
+    vote = Column(Integer(), default=0)
 
     session = __Session__()
 
     @classmethod
-    def return1st_by_id(cls,id):
-        return cls.session.query(cls).filter_by(id=id).first()
+    def return_desclist_by_date(cls, d_str):
+        l = []
+        for h in cls.session.query(cls).order_by(desc(cls.vote)).filter_by(time=d_str):
+            l.append(dict(name=h.name,
+                          identify=h.identify,
+                          price=h.price,
+                          vote=h.vote))
+        return l
+
+    @classmethod
+    def return_1st_by_identify(cls, identify):
+        return cls.session.query(cls).filter_by(identify=identify).first()
+
+
+    @classmethod
+    def return_by_IdentandDate(cls, identify, str_date):
+        return cls.session.query(cls).filter_by(identify=identify,time=str_date).first()
+
+
+    @classmethod
+    def hogehoge(cls, str_date):
+        gaku_2 = []
+        gaku_m2 = []
+        for name in iden_list_2:
+            try:
+                gaku_2.append(cls.return_by_IdentandDate(name,str_date).name)
+            except:
+                pass
+        for name in iden_list_m2:
+            try:
+                gaku_m2.append(cls.return_by_IdentandDate(name,str_date).name)
+            except:
+                pass
+        return gaku_2,gaku_m2
+
+
+class Bussday(Base):
+    __tablename__ = "bussday"
+    __Session__ = sessionmaker(\
+    bind=create_engine("sqlite:///bussday.db", echo=True)\
+    )
+    id = Column(Integer(), primary_key=True)
+    time = Column(String())
+
+    session = __Session__()
+
+    @classmethod
+    def hoge(cls, now, num):
+        dates = []
+        i = cls.session.query(cls).filter_by(time=now).first().id
+
+        for val in range(i, num+1):
+            d = cls.session.query(cls).filter_by(id=val).first().time
+            dates.append(d)
+
+        return dates
+
 
 
 class Osirase(Base):
