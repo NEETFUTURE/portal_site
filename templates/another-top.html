@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+
+{% block body %}
+<html lang="ja">
+<head>
+  <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+  <link href='/static/fullcalendar/fullcalendar.css' rel='stylesheet' />
+<link href='/static/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
+<script src='/static/fullcalendar/lib/moment.min.js'></script>
+<script src='/static/fullcalendar/lib/jquery.min.js'></script>
+<script src='/static/fullcalendar/fullcalendar.min.js'></script>
+
+<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+<script>
+    //     $(document).ready(function() {
+    //     $('#calendar').fullCalendar({
+    //         defaultDate: '2015-04-12',
+    //         // editable: true,
+    //         // eventLimit: true, // allow "more" link when too many events
+    //         header: {
+    //             left: 'prev,next today',
+    //             center: 'title',
+    //             right: 'month,agendaWeek,agendaDay'
+    //         },
+    //         events: [
+    //             {
+    //                 title: 'neetufutureの誕生日',
+    //                 start: '2015-04-01',
+    //                 // end: '2015-04-05',
+    //                 //url: 'http://getbootstrap.com/css/'
+    //             },
+    //             {
+    //                 id: 999,
+    //                 title: 'Repeating Event',
+    //                 start: '2015-02-09T16:00:00'
+    //             },
+    //             {
+    //                 id: 999,
+    //                 title: 'Repeating Event',
+    //                 start: '2015-02-16T16:00:00'
+    //             },
+    //             {
+    //                 title: 'Conference',
+    //                 start: '2015-02-11',
+    //                 end: '2015-02-13'
+    //             },
+    //             {
+    //                 title: 'Meeting',
+    //                 start: '2015-02-12T10:30:00',
+    //                 end: '2015-02-12T12:30:00'
+    //             },
+    //             {
+    //                 title: 'Lunch',
+    //                 start: '2015-02-12T12:00:00'
+    //             },
+    //             {
+    //                 title: 'Meeting',
+    //                 start: '2015-02-12T14:30:00'
+    //             },
+    //             {
+    //                 title: 'Happy Hour',
+    //                 start: '2015-02-12T17:30:00'
+    //             },
+    //             {
+    //                 title: 'Dinner',
+    //                 start: '2015-02-12T20:00:00'
+    //             },
+    //             {
+    //                 title: 'Birthday Party',
+    //                 start: '2015-02-13T07:00:00'
+    //             },
+    //             {
+    //                 title: 'Click for Google',
+    //                 url: 'http://google.com/',
+    //                 start: '2015-02-28'
+    //             }
+    //         ],
+    //         //click on modal
+    //         eventClick: function(event){
+    //             var modal = $("#modal");
+    //             modal.find(".modal-title").html(event.title);
+    //             modal.modal();
+    //         }
+    //     });
+        
+    // });
+$(document).ready(function() {
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'month,agendaWeek,agendaDay'
+        },
+        defaultDate: '2014-06-12',
+        events: [
+            {
+                title: 'All Day Event',
+                start: '2014-06-01'
+            },
+            {
+                title: 'Long Event',
+                start: '2014-06-07',
+                end: '2014-06-10'
+            },
+            {
+                id: 999,
+                title: 'Repeating Event',
+                start: '2014-06-09T16:00:00'
+            },
+            {
+                id: 999,
+                title: 'Repeating Event',
+                start: '2014-06-16T16:00:00'
+            },
+            {
+                title: 'Meeting',
+                start: '2014-06-12T10:30:00',
+                end: '2014-06-12T12:30:00'
+            },
+            {
+                title: 'Lunch',
+                start: '2014-06-12T12:00:00'
+            },
+            {
+                title: 'Birthday Party',
+                start: '2014-06-13T07:00:00'
+            },
+            {
+                title: 'Click for Google',
+                url: 'http://google.com/',
+                start: '2014-06-28'
+            }
+        ],
+        //fullcalendar のevent click時にcallされる関数
+        eventClick: function(event) {
+            //modal ni id=modal no jqueryobject　を生成
+            var modal = $("#modal");
+            modal.find(".modal-title").html(event.title);
+            modal.modal();
+        }
+    });
+});
+</script>
+  <style>
+.sctable {
+		height: 300px;
+		overflow-x: scroll;
+		overflow-y: scroll;
+
+}
+  </style>  
+</head>
+
+<body>
+  <div id="header">
+  <!-- 
+    <div class="logo">
+        <h1>TDU</h1>
+    </div>
+    <!-- /logo -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+            <a class="navbar-brand cool-font" href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Cafe of University</a>
+
+            <!-- 画面サイズが小さいときに折りたたまれる処理 -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <!-- <span class="icon-bar"></span> -->
+                </button>
+                <span class="navbar-brand visible-xs" href="#">めにゅ〜</span>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="first">
+                        <a href="#">Top</a>
+                    </li>
+                    <li>
+                        <a href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a href="#">Rnaking</a>
+                    </li>
+                    <li>
+                        <a href="#">other</a>
+                    </li>
+                    <li>
+                        <a href="#">other</a>
+                    </li>
+                </ul>
+
+        <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                <!--
+                  <div class="modal-header bg-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title cool-font" id="myModalLabel">Welcome</h4>
+                  </div>
+                  -->
+                  <div class="modal-body">     
+                <!-- modal in login form -->
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" placeholder="reimu">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="inputPassword3" placeholder="marisa">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Sign in</button>
+                    </div>
+                  </div>
+                </form> <!-- /modal in login form -->
+                  </div>
+                  <!--
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div> -->
+                </div>
+              </div>
+            </div><!-- /modal -->
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- container -->
+    </nav><!-- /nav -->
+</div>
+<!-- /header -->
+<div class="container div-top">
+<h2 class="title page-header">東京電機大学学生食堂<small> ポータル </small></h2>
+<!-- caroucel -->
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+        {% for c in range(1,carousel_list|length)%}
+        <li data-target="#carousel-example-generic" data-slide-to="{{c}}"></li>
+        {% endfor %}
+        
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+    {% for l in carousel_list %}
+        {% if l["id"] == 1 %}
+        <div class="item active">
+            <img src="/view_upload/{{l['link']}}" alt="slide-1" width="31">
+            <!-- カルーセルの中のボタン　-->
+            <div class="carousel-caption">
+                <h3 style="color:red">aaaaaaaaaaaa</h3>
+                <button type="button" class="btn btn-primary">Primary</button>
+            </div><!-- carousel-caption -->
+        {% else %}
+        <div class="item">
+            <img src="/view_upload/{{l['link']}}" alt="slide-2">
+        {% endif %}
+            <!-- <div class="carousel-caption"><h1>{{l["h1_str"]}}</h1></div> -->
+        </div>
+    {% endfor%}
+    </div>
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+</div><!-- /carousel -->
+</div><!-- /container -->
+
+
+<div id="content">
+    <div class="container">
+
+
+
+        <!-- /title -->
+        <div class="row div-center">
+            <div class="text-box  col-xs-6 col-sm-5">
+             <div id="calendar"></div>
+             <!-- cal modal -->
+<div class="modal" role="dialog" id="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">title</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+            </div><!-- /text-box -->
+			<div class="col-xs-6 col-sm-7">
+			        <div style="border-bottom:solid 3px #E6E6E6">
+						<h3>
+						<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+						本日のメニュー
+						</h3>
+						<div class="sctable">
+						        <table class="table">
+						                <tr>
+						                        <th>Picture</th>
+						                        <th>Name</th>
+						                </tr>
+						                <tr>
+						                        <th><img src="/view_upload/ramen.jpeg" alt="slide-1" width="80"></th>
+						                        <td><h4>電大ラーメンセット</h4></td>
+						                </tr>
+						                <tr>
+						                        <th>
+<img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
+												</th>
+						                        <td>唐揚げ丼せっと</td>
+						                </tr>
+						                <tr>
+						                        <th>
+<img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
+												</th>
+						                        <td>天丼</td>
+						                </tr>
+						                <tr>
+						                        <th>
+<img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
+												</th>
+						                        <td>KRSWセット</td>
+						                </tr>
+						                <tr>
+						                        <th>
+<img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
+												</th>
+						                        <td>海鮮丼</td>
+						                </tr>
+						        </table>
+						</div>
+					</div><!-- /border-bottom:solid -->
+			</div><!-- /col-xs-6 -->
+			<div class="col-sm-12">
+					<div class="text-left" style="border-bottom: solid 4px #E6E6E6"><h3>新着情報</h3></div>
+			</div><!-- sm-12 -->
+			<div class="col-sm-6" style="padding-top: 19px">
+				<div style="border-bottom: dashed 1px #E6E6E6">
+						<p>2015/04/19</p>
+						<p>
+								ぼくの誕生日
+						</p>
+				</div>	
+				<div style="border-bottom: dashed 1px #E6E6E6">
+				        <p>2015/10/10</p>
+						<p>
+								からあげ定食300万食達成
+								響の誕生日
+						</p>
+						
+				</div>
+			</div><!-- col-sm-6-->
+			<div class="col-sm-6">
+				<div style="border-bottom: dashed 1px #E6E6E6">
+				        <p>2015/04/21</p>
+						<p>
+								新メニューである我那覇くんのつくるサーターアンダギーが発売されました
+						</p>
+				</div>
+				<div style="border-bottom: dashed 1px #E6E6E6">
+				        <p>2015/05/04</p>
+						<p>
+								あなたのそばにいる弁護士がいます
+						</p>
+				</div>
+			</div><!-- /div col-sm-6 -->
+        </div><!-- /row -->
+
+
+    </div><!-- /container -->
+
+    <div class="gray-zone">
+    </div>
+    <!-- /button-box -->
+</div>
+<!-- /content -->
+
+<div id="footer">
+        <div class="logo">
+        <h1>TDU</h1>
+    </div>
+    <!-- /footer-logo -->
+    <!--
+    <ul class="navbar-nav list-inline">
+        <li class="first">
+            <a href="">MENU1</a>
+        </li>
+        <li>
+            <a href="">MENU2</a>
+        </li>
+        <li>
+            <a href="">MENU3</a>
+        </li>
+        <li>
+            <a href="">MENU4</a>
+        </li>
+        <li>
+            <a href="">MENU5</a>
+        </li>
+    </ul>
+    -->
+    <!-- /nav -->
+
+
+  <!--              
+    <div class="clearfix"></div>
+    <ul class="sns-icon list-inline">
+        <li>
+            <i class="fa fa-twitter fa-2x"></i>
+        </li>
+        <li>
+            <i class="fa fa-facebook fa-2x"></i>
+        </li>
+    </ul>
+    -->
+    <!-- /sns-icon -->
+    <div class="container">
+
+       <a class="cool-font btn login" role="button" data-toggle="modal" data-target="#myModal" style="color:#000"><span class="glyphicon glyphicon-knight"></span> Login</a>
+    </div>
+    <div class="copy">
+        <span>Powered by  学ぽ団</span>
+
+    </div>
+    <!-- /copy -->
+</div>
+<!-- /footer -->
+</body>
+</html>
+{% endblock %}
