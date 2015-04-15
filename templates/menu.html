@@ -1,0 +1,252 @@
+<!DOCTYPE html＞
+    <html lang="ja">
+<head>
+<title>メニュー(仮)</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<script type="text/javascript" src="../static/js/jquery-1.11.2.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-theme.min.css">
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css">
+<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<style>
+    body {
+        overflow-x: hidden;
+    }
+</style>
+<script>
+$(function(){
+    //はじめ以外を非表示に
+    $('#aco .daymenu').not('.daymenu:first').hide();
+    //idがaco直下のdaytitle classがクリックされたとき発生
+    $('#aco .jumbotron').click(function(){
+        if($(this).next('.daymenu').is(':visible')){
+            $(this).next('.daymenu').slideUp(300);
+        } else {
+            $(this).next('.daymenu').slideDown(300).siblings('.daymenu').slideUp(300);
+        }
+
+    });
+	
+
+
+});
+
+
+</script>
+</head>
+<body>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+            <a class="navbar-brand cool-font" href="#"><span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span> Cafe of University</a>
+
+            <!-- 画面サイズが小さいときに折りたたまれる処理 -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <!-- <span class="icon-bar"></span> -->
+                </button>
+                <span class="navbar-brand visible-xs" href="#">めにゅ〜</span>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="first">
+                        <a href="#">Top</a>
+                    </li>
+                    <li>
+                        <a href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a href="#">Rnaking</a>
+                    </li>
+                    <li>
+                        <a href="#">other</a>
+                    </li>
+                    <li>
+                        <a href="#">other</a>
+                    </li>
+                </ul>
+
+        <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                <!--
+                  <div class="modal-header bg-warning">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title cool-font" id="myModalLabel">Welcome</h4>
+                  </div>
+                  -->
+                  <div class="modal-body">     
+                <!-- modal in login form -->
+                <form class="form-horizontal">
+                  <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="email" class="form-control" id="inputEmail3" placeholder="reimu">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" class="form-control" id="inputPassword3" placeholder="marisa">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Sign in</button>
+                    </div>
+                  </div>
+                </form> <!-- /modal in login form -->
+                  </div>
+                  <!--
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  </div> -->
+                </div>
+              </div>
+            </div><!-- /modal -->
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- container -->
+    </nav><!-- /nav -->
+
+        <div class="container" >
+            <div class="page-header">
+    <h1><span class="glyphicon glyphicon-list " aria-hidden="true"></span> メニュー</h1>
+    <p>東京電機大学学生食堂のメニューです.</p>
+    <p>唐揚げ丼うまスギィ　</p>
+    </div><!-- /page-header -->
+        </div><!-- /container Syoujo ga mita nihon no genhukei -->
+    <div class="row">
+        <div class="col-xs-1 col-md-1">
+            <!-- Pass -->
+        </div>
+        <div id="aco"  class="col-xs-11 col-md-11">
+            <div class="jumbotron" style="padding-top:5px; padding-bottom:5px">
+                <h4 style="padding-left:20px; margin-left:30px; border-left: 2px solid red" class="daytitle">今日</h4>
+            </div> <!-- jumbtron -->
+                <div class="row daymenu">
+                <!-- menu starting -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="../upload_picture/test.jpg" style="height:25%" alt="testpic">
+                                <div class="caption">
+                                    <h3>あかり定食</h3>
+                                    <p>あかりとんぼをそえて</p>
+                            </div><!-- /caption -->
+                        </div><!-- thumbnail 1 -->
+                    </div><!-- /col-sm-6 -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="../upload_picture/nanj.png.png" style="height:25%" alt="testpic">
+                                <div class="caption">
+                                    <h3>なんj定食</h3>
+                                    <p>300000円</p>
+                            </div><!-- /caption -->
+                        </div><!-- thumbnail 2 -->
+                    </div><!-- /col-md-3 2 -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="../upload_picture/ten.jpeg" style="height:25%" alt="testpic">
+                                <div class="caption">
+                                    <h3>天丼</h3>
+                                    <p>600円</p>
+                            </div><!-- /caption -->                         
+                        </div><!-- thubnail 3 -->
+                    </div><!-- /col-md-3 3 -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="../upload_picture/sushi.jpeg" style="height:25%" alt="testpic">
+                                <div class="caption">
+                                    <h3>お寿司の盛り合わせ</h3>
+                                    <p>3000円</p>
+                            </div><!-- /caption -->
+                        </div><!-- thubnail last -->
+                    </div><!-- /col-md-3 last -->
+                </div><!-- line140/row -->
+
+            <div  id="accordion" class="jumbotron" style="padding-top:5px; padding-bottom:5px">
+                <h4 style="padding-left:20px; margin-left:30px; border-left: 2px solid red" class="daytitle">明日</h4>
+            </div> <!-- jumbtron -->
+                <div class="row daymenu">
+                <!-- menu starting -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="../upload_picture/test.jpg" style="height:25%" alt="testpic">
+                                <div class="caption">
+                                    <h3>あかり定食</h3>
+                                    <p>あかりとんぼをそえて</p>
+                            </div><!-- /caption -->
+                        </div><!-- thumbnail 1 -->
+                    </div><!-- /col-sm-6 -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="../upload_picture/nanj.png.png" style="height:25%" alt="testpic">
+                                <div class="caption">
+                                    <h3>なんj定食</h3>
+                                    <p>300000円</p>
+                            </div><!-- /caption -->
+                        </div><!-- thumbnail 2 -->
+                    </div><!-- /col-md-3 2 -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="../upload_picture/ten.jpeg" style="height:25%" alt="testpic">
+                                <div class="caption">
+                                    <h3>天丼</h3>
+                                    <p>600円</p>
+                            </div><!-- /caption -->                         
+                        </div><!-- thubnail 3 -->
+                    </div><!-- /col-md-3 3 -->
+                    <div class="col-sm-6 col-md-3">
+                        <div class="thumbnail">
+                            <img src="../upload_picture/sushi.jpeg" style="height:25%" alt="testpic">
+                                <div class="caption">
+                                    <h3>お寿司の盛り合わせ</h3>
+                                    <p>3000円</p>
+                            </div><!-- /caption -->
+                        </div><!-- thubnail last -->
+                    </div><!-- /col-md-3 last -->
+                </div><!-- line180/row -->
+                            <div class="jumbotron" style="padding-top:5px; padding-bottom:5px">
+                <h4 style="padding-left:20px; margin-left:30px; border-left: 2px solid red" class="daytitle">明後日</h4>
+            </div> <!-- jumbtron -->
+                <div class="row daymenu">
+                <!-- menu starting -->
+                    <div class="col-sm-6 col-md-3">
+                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                    </div>
+                    <div class="col-sm-6 col-md-3">
+                        <blockquote><h1>チキンカツカレー</h1><small>430yen</small></blockquote>
+                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                    </div><!-- /col-md-3 2 -->
+                    <div class="col-sm-6 col-md-3">
+                        <blockquote><h1>天丼</h1><small>900yen</small></blockquote>
+                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                    </div><!-- /col-md-3 3 -->
+                    <div class="col-sm-6 col-md-3">
+                        <blockquote><h1>aa定食</h1><small>30yen</small></blockquote>
+                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                    </div><!-- /col-md-3 last -->
+                </div><!-- line113/row -->
+        </div><!-- /col-11 -->
+    </div><!-- /row -->
+
+	<p class="abbr"><a>Vim は神です。ああああああ</a></p>
+
+
+</body>
+</html>
+
