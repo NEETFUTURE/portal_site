@@ -11,27 +11,27 @@
 </style>
 
 <script type=text/javascript>
-	$(function(){
-		$(".btn").click(function(){
-      		var json = JSON.stringify($(this).attr("id"));
-      		$.ajax({
-        		type:'POST',
-        		url:'{{ url_for('connect') }}',
-        		data:json,
-        		contentType:'application/json',
-        		success: function(data){
-        			// var vote_num = $.parseJSON(data)
-        			// var id = $.parseJSON(json)
-        			// var text = $("."+id).text().split(" ")[0]
-        			// $("."+id).text(text+" -> 投票数:"+vote_num)
-              var vote_num = $.parseJSON(data)
-              var id = $.parseJSON(json)
-              $("h3"+"."+id).text("投票数:"+vote_num)
-        		}
-      		});
-      		return false;
-    	});
-  	});
+  $(function(){
+    $(".btn").click(function(){
+          var json = JSON.stringify($(this).attr("id")+"*"+"{{time}}");
+          $.ajax({
+            type:'POST',
+            url:"{{ url_for('connect') }}",
+            data:json,
+            contentType:'application/json',
+            success: function(data){
+                // var vote_num = $.parseJSON(data)
+                // var id = $.parseJSON(json)
+                // var text = $("."+id).text().split(" ")[0]
+                // $("."+id).text(text+" -> 投票数:"+vote_num)
+                var vote_num = $.parseJSON(data)
+                var id = $.parseJSON(json).split("*")[0]
+                $("h3"+"."+id).text("投票数:"+vote_num)
+            }
+          });
+          return false;
+      });
+    });
 </script>
 <body>
   <div id="header">
@@ -128,48 +128,57 @@
 
         <p>ここでは学生食堂のメニューの中でも特に人気の高いものを紹介します。誰でも、いつでも、どこでも、自由に投票できるので、もしあなたが好きなメニューがあったら投票してみてください。</p>
         </div><!-- /page-header -->
-        {% for n,m,v in menu_vote %}
+        {% for h in menu %}
         <div class="panel panel-default">
 
         <div class="panel-heading">
-            {% if n in ["a","b","c","d","e","f"] %}
+            {% if h.identify in ["a","b","c","d","e","f"] %}
                 <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-                <strong>定食</strong>
-            {% elif n in ["d1", "d2", "d3"] %}
+                <strong>日替わり定食</strong>
+            {% elif h.identify == "r" %}
                 <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-                <strong>どんぶり</strong>
+                <strong>日替わりラーメン</strong>
+            {% elif h.identify == "pa" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりパスタ</strong>
+            {% elif h.identify == "udo" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりうどん</strong>
+            {% elif h.identify == "soba" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりそば</strong>
+            {% elif h.identify == "ra" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりラーメンA</strong>
+            {% elif h.identify == "rb" %}
+                <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+                <strong>日替わりラーメンB</strong>
             {% else %}
                 <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
-                <strong>その他</strong>
+                <strong>null</strong>
             {% endif %}
         </div>
 
         <div class="panel-body">
         <div class="row">
             <div class="col-xs-6 col-md-3">
-                <a href="#" class="thumbnail"><img src="/view_upload/{{time}}_{{n}}.jpg" alt="..."></a>
-                <button type="submit" class="btn btn-danger" id="{{n}}">
+                <a href="#" class="thumbnail"><img src="/view_upload/{{time}}_{{h.identify}}.jpg" alt="..."></a>
+                <button type="submit" class="btn btn-danger" id="{{h.identify}}">
                     <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> 投票する
                 </button>
             </div><!-- col-xs-6 col-md-3 -->
-            {% if loop.index == 1 %}
-                <img src="/static/img/L1.png" width="35" height="35" alt="1">
-            {% elif loop.index == 2 %}
-                <img src="/static/img/L2.png" width="35" height="35" alt="1">
-            {% elif loop.index == 3 %}
-                <img src="/static/img/L3.png" width="35" height="35" alt="1">
+            {% if loop.index < 4 %}
+            <img src="/static/img/L{{loop.index}}.png" width="35" height="35" alt="1">
             {% endif %}
-            <strong>　{{m}} </strong>
-            <abbr title="attribute"> ¥350</abbr>
-            <p><h3 class="{{n}}">投票数:{{v}}</h3></p>
+            <strong>　{{h.name}} </strong>
+            <abbr title="attribute">¥{{h.price}} </abbr>
+            <p><h3 class="{{h.identify}}">投票数:{{h.vote}}</h3></p>
 
         </div><!-- /row -->
         </div><!-- /panelbody -->
         </div><!-- /pamel -->
     </div><!-- /container -->
     {% endfor %}
-
-
 </body>
 
 {% endblock %}

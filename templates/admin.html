@@ -42,28 +42,65 @@
 	<input type='submit' value='更新'>
 </form>
 
+	<h1>日替わりメニュー</h1>
+	<form action="/admin" method="POST">
+		日付を選択:
+		<select name="date">
+			{% for d in dates %}
+				{% if d == today %}
+				<option value="{{d}}" selected >{{d}}</option>
+				{% else %}
+				<option value="{{d}}">{{d}}</option>
+				{% endif %}
+			{% endfor %}
+		</select>
+		<input type="submit" value="取得する"/>
+	</form>
 
-	<h1>日替わりメニュー({{ time }})</h1>
 	<form action="{{ url_for('change_higawari') }}" method="POST">
-	日付変更: <input type="text" name="day"/>
-	<table border="3">
-		<tr>
-			<td>カラム名</td>
-			<td>メニュー名</td>
-			<td>投票数</td>
-			<td>商品名変更</td>
-		</tr>
-		{% for n,m,v in higawari %}
+		<table border="3">
+			<input type="hidden" name="today" value="{{today}}">
 			<tr>
-				<td>{{ n }}</td>
-				<td>{{ m }}</td>
-				<td>{{ v }}</td>
-				<td>
-					変更: <input type="text" name="{{ n }}"/>
-				</td>
+				<td>識別子</td>
+				<td>メニュー名</td>
+				<td>値段</td>
+				<td>投票数</td>
+				<td>削除</td>
 			</tr>
-		{% endfor %}
-	</table>
+			{% for val in range(0,10) %}
+				<tr>
+					<td>
+						{% if val < menu|length %}
+						<select name="s_{{val}}">
+							{% for i in i_list %}
+								{% if i == menu[val].identify %}
+									<option value="{{i}}" selected>{{i}}</option>
+								{% else %}
+									<option value="{{i}}">{{i}}</option>
+								{% endif %}
+							{% endfor %}
+						</select>
+						{% else %}
+						<select name="s_{{val}}">
+							{% for i in i_list %}
+								<option value="{{i}}">{{i}}</option>
+							{% endfor %}
+						</select>
+						{% endif %}
+					</td>
+					{% if val < menu|length%}
+					<td><input type='text' name='m_{{val}}' value='{{menu[val].name}}' ></td>
+					<td><input type='text' name='p_{{val}}' value='{{menu[val].price}}'></td>
+					<td><input type='text' name='v_{{val}}' value='{{menu[val].vote}}' ></td>
+					<td><input type="checkbox" name="ch" value="{{menu[val].identify}}"></td>
+					{% else %}
+					<td><input type='text' name='m_{{val}}' ></td>
+					<td><input type='text' name='p_{{val}}' ></td>
+					<td><input type='text' name='v_{{val}}' ></td>
+					{% endif %}
+				</tr>
+			{% endfor %}
+		</table>
 		<input type="submit" value="変更を適用する"/>
 	</form>
 
@@ -104,7 +141,7 @@
 			</tr>
 		{%endfor%}
 	</table>
-
+	
 </center>
 </body>
 
