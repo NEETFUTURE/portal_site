@@ -4,8 +4,8 @@
 {% block body %}
 <html lang="ja">
 <head>
-  <link rel="stylesheet" type="text/css" href="/static/css/index.css">
-  <link href='/static/fullcalendar/fullcalendar.css' rel='stylesheet' />
+<link rel="stylesheet" type="text/css" href="/static/css/index.css">
+<link href='/static/fullcalendar/fullcalendar.css' rel='stylesheet' />
 <link href='/static/fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print' />
 <script src='/static/fullcalendar/lib/moment.min.js'></script>
 <script src='/static/fullcalendar/lib/jquery.min.js'></script>
@@ -142,14 +142,14 @@ $(document).ready(function() {
     });
 });
 </script>
-  <style>
-.sctable {
-		height: 300px;
-		overflow-x: scroll;
-		overflow-y: scroll;
+<style>
+    .sctable {
+    		height: 300px;
+    		overflow-x: scroll;
+    		overflow-y: scroll;
 
-}
-  </style>  
+    }
+</style>  
 </head>
 
 <body>
@@ -279,130 +279,110 @@ $(document).ready(function() {
     </a>
 </div><!-- /carousel -->
 </div><!-- /container -->
-
-
 <div id="content">
     <div class="container">
-
-
-
         <!-- /title -->
         <div class="row div-center">
             <div class="text-box  col-xs-6 col-sm-5">
-             <div id="calendar"></div>
-             <!-- cal modal -->
-<div class="modal" role="dialog" id="modal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">title</h4>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer"></div>
-        </div>
-    </div>
-</div>
-
+                <div id="calendar"></div>
+                <!-- cal modal -->
+                <div class="modal" role="dialog" id="modal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                <h4 class="modal-title">title</h4>
+                            </div>
+                            <div class="modal-body"></div>
+                            <div class="modal-footer"></div>
+                        </div>
+                    </div>
+                </div>
             </div><!-- /text-box -->
 			<div class="col-xs-6 col-sm-7">
-			        <div style="border-bottom:solid 3px #E6E6E6">
-						<h3>
+			     <div style="border-bottom:solid 3px #E6E6E6">
+					<h3>
 						<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
 						本日のメニュー
-						</h3>
-						<div class="sctable">
-						        <table class="table">
-						                <tr>
-						                        <th>Picture</th>
-						                        <th>Name</th>
-						                </tr>
-						                <tr>
-						                        <th><img src="/view_upload/ramen.jpeg" alt="slide-1" width="80"></th>
-						                        <td><h4>電大ラーメンセット</h4></td>
-						                </tr>
-						                <tr>
-						                        <th>
-<img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
-												</th>
-						                        <td>唐揚げ丼せっと</td>
-						                </tr>
-						                <tr>
-						                        <th>
-<img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
-												</th>
-						                        <td>天丼</td>
-						                </tr>
-						                <tr>
-						                        <th>
-<img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
-												</th>
-						                        <td>KRSWセット</td>
-						                </tr>
-						                <tr>
-						                        <th>
-<img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
-												</th>
-						                        <td>海鮮丼</td>
-						                </tr>
-						        </table>
-						</div>
-					</div><!-- /border-bottom:solid -->
+					</h3>
+					<div class="sctable">
+						<table class="table">
+                            <tr>
+						        <th>Picture</th>
+						        <th>Name</th>
+						    </tr>
+						    <tr>
+						        <th><img src="/view_upload/ramen.jpeg" alt="slide-1" width="80"></th>
+						        <td><h4>電大ラーメンセット</h4></td>
+						    </tr>
+						    <tr>
+                                <th>
+                                    <img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
+								</th>
+						        <td>唐揚げ丼せっと</td>
+						    </tr>
+						    <tr>
+                                <th>
+                                    <img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
+                                </th>
+						        <td>天丼</td>
+						    </tr>
+						    <tr>
+						        <th>
+                                    <img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
+								</th>
+						        <td>KRSWセット</td>
+						    </tr>
+						    <tr>
+						        <th>
+                                    <img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
+								</th>
+						        <td>海鮮丼</td>
+						    </tr>
+					    </table>
+				    </div>
+			    </div><!-- /border-bottom:solid -->
 			</div><!-- /col-xs-6 -->
 			<div class="col-sm-12">
-					<div class="text-left" style="border-bottom: solid 4px #E6E6E6"><h3>新着情報</h3></div>
+                <div class="text-left" style="border-bottom: solid 4px #E6E6E6"><h3>新着情報</h3></div>
 			</div><!-- sm-12 -->
             <!-- お知らせ 左 -->
 			<div class="col-sm-6" style="padding-top: 19px">
 				<div style="border-bottom: dashed 1px #E6E6E6">
-						<p>2015/04/19</p>
-						<p>
-								ぼくの誕生日
-						</p>
+					<p>2015/04/19</p>
+					<p>ぼくの誕生日</p>
 				</div>	
 				<div style="border-bottom: dashed 1px #E6E6E6">
-				        <p>2015/10/10</p>
-						<p>
-								からあげ定食300万食達成
-								響の誕生日
-						</p>
-						
+				    <p>2015/10/10</p>
+					<p>からあげ定食300万食達成<br>響の誕生日</p>
 				</div>
 			</div><!-- col-sm-6-->
             <!-- お知らせ 右 -->
 			<div class="col-sm-6">
 				<div style="border-bottom: dashed 1px #E6E6E6">
-				        <p>2015/04/21</p>
-						<p>
-								新メニューである我那覇くんのつくるサーターアンダギーが発売されました
-						</p>
+				    <p>2015/04/21</p>
+					<p>新メニューである我那覇くんのつくるサーターアンダギーが発売されました</p>
 				</div>
 				<div style="border-bottom: dashed 1px #E6E6E6">
-				        <p>2015/05/04</p>
-						<p>
-								あなたのそばにいる弁護士がいます
-						</p>
+				    <p>2015/05/04</p>
+					<p>あなたのそばにいる弁護士がいます</p>
 				</div>
 			</div><!-- /div col-sm-6 -->
         </div><!-- /row -->
         <div class="col-sx-12">
             <div class="text-right">
                 <p><a href="/">省略されたお知らせはこちら</a><p>
-                </div>
+            </div>
         </div>
-
-
     </div><!-- /container -->
-
-    <div class="gray-zone">
-    </div>
+    <div class="gray-zone"></div>
     <!-- /button-box -->
 </div>
 <!-- /content -->
 
 <div id="footer">
-        <div class="logo">
-        <h1>TDU</h1>
+    <div class="logo">
+    <h1>TDU</h1>
     </div>
     <!-- /footer-logo -->
     <!--
@@ -440,12 +420,10 @@ $(document).ready(function() {
     -->
     <!-- /sns-icon -->
     <div class="container">
-
-       <a class="cool-font btn login" role="button" data-toggle="modal" data-target="#myModal" style="color:#000"><span class="glyphicon glyphicon-knight"></span> Login</a>
+        <a class="cool-font btn login" role="button" data-toggle="modal" data-target="#myModal" style="color:#000"><span class="glyphicon glyphicon-knight"></span> Login</a>
     </div>
     <div class="copy">
         <span>Powered by  学ぽ団</span>
-
     </div>
     <!-- /copy -->
 </div>
