@@ -76,7 +76,7 @@ iden_list = ["default","a","b","c","d","e","f","r",
 @app.route("/")
 @app.route("/index")
 def top_page():
-    return render_template("top.html",
+    return render_template("another-top.html",
                            carousel_list=ormer.Carousel.get_dict(),
                            osirase_list=ormer.Osirase.getAllData())
 
