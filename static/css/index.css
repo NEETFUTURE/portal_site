@@ -15,9 +15,9 @@
 		overflow-x : hidden;
 	}
 	body{
-		background-image: url("/static/img/9.png");
+		/*background-image: url("/static/img/9.png");
 		background-repeat: repeat;
-		overflow-x : hidden;
+		overflow-x : hidden;*/
 	}
 
 	.scroll {

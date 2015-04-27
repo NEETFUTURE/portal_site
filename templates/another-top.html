@@ -348,25 +348,29 @@ $(document).ready(function() {
 			</div><!-- sm-12 -->
             <!-- お知らせ 左 -->
 			<div class="col-sm-6" style="padding-top: 19px">
+				{% for s in osirase_list[0:4:2] %}
 				<div style="border-bottom: dashed 1px #E6E6E6">
-					<p>2015/04/19</p>
-					<p>ぼくの誕生日</p>
+					<p>{{s.time}}</p>
+					{% if s.link=="" %}
+					<p>{{s.title}}</p>
+					{% else %}
+					<td><a href="/view_upload/{{s.link}}">{{s.title}}</a></td>
+					{% endif %}
 				</div>	
-				<div style="border-bottom: dashed 1px #E6E6E6">
-				    <p>2015/10/10</p>
-					<p>からあげ定食300万食達成<br>響の誕生日</p>
-				</div>
+				{% endfor %}
 			</div><!-- col-sm-6-->
             <!-- お知らせ 右 -->
 			<div class="col-sm-6">
+				{% for s in osirase_list[1:4:2] %}
 				<div style="border-bottom: dashed 1px #E6E6E6">
-				    <p>2015/04/21</p>
-					<p>新メニューである我那覇くんのつくるサーターアンダギーが発売されました</p>
+					<p>{{s.time}}</p>
+					{% if s.link == ""%}
+					<p>{{s.title}}</p>
+					{% else %}
+					<td><a href="/view_upload/{{s.link}}">{{s.title}}</a></td>
+					{% endif %}
 				</div>
-				<div style="border-bottom: dashed 1px #E6E6E6">
-				    <p>2015/05/04</p>
-					<p>あなたのそばにいる弁護士がいます</p>
-				</div>
+				{% endfor %}
 			</div><!-- /div col-sm-6 -->
         </div><!-- /row -->
         <div class="col-sx-12">
