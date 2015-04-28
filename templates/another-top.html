@@ -83,7 +83,7 @@
     //             modal.modal();
     //         }
     //     });
-        
+
     // });
 $(document).ready(function() {
     $('#calendar').fullCalendar({
@@ -149,12 +149,12 @@ $(document).ready(function() {
     		overflow-y: scroll;
 
     }
-</style>  
+</style>
 </head>
 
 <body>
   <div id="header">
-  <!-- 
+  <!--
     <div class="logo">
         <h1>TDU</h1>
     </div>
@@ -204,7 +204,7 @@ $(document).ready(function() {
                     <h4 class="modal-title cool-font" id="myModalLabel">Welcome</h4>
                   </div>
                   -->
-                  <div class="modal-body">     
+                  <div class="modal-body">
                 <!-- modal in login form -->
                 <form class="form-horizontal">
                   <div class="form-group">
@@ -249,7 +249,7 @@ $(document).ready(function() {
         {% for c in range(1,carousel_list|length)%}
         <li data-target="#carousel-example-generic" data-slide-to="{{c}}"></li>
         {% endfor %}
-        
+
     </ol>
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
@@ -311,34 +311,12 @@ $(document).ready(function() {
 						        <th>Picture</th>
 						        <th>Name</th>
 						    </tr>
+                            {% for i in today_higawari %}
 						    <tr>
 						        <th><img src="/view_upload/ramen.jpeg" alt="slide-1" width="80"></th>
-						        <td><h4>電大ラーメンセット</h4></td>
+						        <td><h4>{{i.name}}</h4></td>
 						    </tr>
-						    <tr>
-                                <th>
-                                    <img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
-								</th>
-						        <td>唐揚げ丼せっと</td>
-						    </tr>
-						    <tr>
-                                <th>
-                                    <img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
-                                </th>
-						        <td>天丼</td>
-						    </tr>
-						    <tr>
-						        <th>
-                                    <img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
-								</th>
-						        <td>KRSWセット</td>
-						    </tr>
-						    <tr>
-						        <th>
-                                    <img src="/view_upload/ramen.jpeg" alt="slide-1" width="80">
-								</th>
-						        <td>海鮮丼</td>
-						    </tr>
+                            {% endfor %}
 					    </table>
 				    </div>
 			    </div><!-- /border-bottom:solid -->
@@ -356,7 +334,7 @@ $(document).ready(function() {
 					{% else %}
 					<td><a href="/view_upload/{{s.link}}">{{s.title}}</a></td>
 					{% endif %}
-				</div>	
+				</div>
 				{% endfor %}
 			</div><!-- col-sm-6-->
             <!-- お知らせ 右 -->
@@ -411,7 +389,7 @@ $(document).ready(function() {
     <!-- /nav -->
 
 
-  <!--              
+  <!--
     <div class="clearfix"></div>
     <ul class="sns-icon list-inline">
         <li>
