@@ -30,7 +30,7 @@ $(function(){
         }
 
     });
-	
+
 
 
 });
@@ -84,7 +84,7 @@ $(function(){
                     <h4 class="modal-title cool-font" id="myModalLabel">Welcome</h4>
                   </div>
                   -->
-                  <div class="modal-body">     
+                  <div class="modal-body">
                 <!-- modal in login form -->
                 <form class="form-horizontal">
                   <div class="form-group">
@@ -131,115 +131,50 @@ $(function(){
         </div>
         <div id="aco"  class="col-xs-11 col-md-11">
             <div class="jumbotron" style="padding-top:5px; padding-bottom:5px">
-                <h4 style="padding-left:20px; margin-left:30px; border-left: 2px solid red" class="daytitle">今日</h4>
+                <h4 style="padding-left:20px; margin-left:30px; border-left: 2px solid red" class="daytitle">今日  ({{higawari[0][1]}})</h4>
             </div> <!-- jumbtron -->
                 <div class="row daymenu">
                 <!-- menu starting -->
+                    {% for i in higawari[0] %}
                     <div class="col-sm-6 col-md-3">
                         <div class="thumbnail">
                             <img src="../upload_picture/test.jpg" style="height:25%" alt="testpic">
                                 <div class="caption">
-                                    <h3>あかり定食</h3>
-                                    <p>あかりとんぼをそえて</p>
+                                    <h3>{{i.name}}</h3>
+                                    <p>{{i.price}}</p>
                             </div><!-- /caption -->
                         </div><!-- thumbnail 1 -->
                     </div><!-- /col-sm-6 -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../upload_picture/nanj.png.png" style="height:25%" alt="testpic">
-                                <div class="caption">
-                                    <h3>なんj定食</h3>
-                                    <p>300000円</p>
-                            </div><!-- /caption -->
-                        </div><!-- thumbnail 2 -->
-                    </div><!-- /col-md-3 2 -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../upload_picture/ten.jpeg" style="height:25%" alt="testpic">
-                                <div class="caption">
-                                    <h3>天丼</h3>
-                                    <p>600円</p>
-                            </div><!-- /caption -->                         
-                        </div><!-- thubnail 3 -->
-                    </div><!-- /col-md-3 3 -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../upload_picture/sushi.jpeg" style="height:25%" alt="testpic">
-                                <div class="caption">
-                                    <h3>お寿司の盛り合わせ</h3>
-                                    <p>3000円</p>
-                            </div><!-- /caption -->
-                        </div><!-- thubnail last -->
-                    </div><!-- /col-md-3 last -->
+                    {% endfor %}
                 </div><!-- line140/row -->
 
             <div  id="accordion" class="jumbotron" style="padding-top:5px; padding-bottom:5px">
-                <h4 style="padding-left:20px; margin-left:30px; border-left: 2px solid red" class="daytitle">明日</h4>
+                <h4 style="padding-left:20px; margin-left:30px; border-left: 2px solid red" class="daytitle">{{higawari[1][1]}}</h4>
             </div> <!-- jumbtron -->
                 <div class="row daymenu">
                 <!-- menu starting -->
+                    {% for i in higawari[1][0] %}
                     <div class="col-sm-6 col-md-3">
                         <div class="thumbnail">
                             <img src="../upload_picture/test.jpg" style="height:25%" alt="testpic">
                                 <div class="caption">
-                                    <h3>あかり定食</h3>
-                                    <p>あかりとんぼをそえて</p>
+                                    <h3>{{i.name}}</h3>
+                                    <p>{{i.price}}</p>
                             </div><!-- /caption -->
                         </div><!-- thumbnail 1 -->
                     </div><!-- /col-sm-6 -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../upload_picture/nanj.png.png" style="height:25%" alt="testpic">
-                                <div class="caption">
-                                    <h3>なんj定食</h3>
-                                    <p>300000円</p>
-                            </div><!-- /caption -->
-                        </div><!-- thumbnail 2 -->
-                    </div><!-- /col-md-3 2 -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../upload_picture/ten.jpeg" style="height:25%" alt="testpic">
-                                <div class="caption">
-                                    <h3>天丼</h3>
-                                    <p>600円</p>
-                            </div><!-- /caption -->                         
-                        </div><!-- thubnail 3 -->
-                    </div><!-- /col-md-3 3 -->
-                    <div class="col-sm-6 col-md-3">
-                        <div class="thumbnail">
-                            <img src="../upload_picture/sushi.jpeg" style="height:25%" alt="testpic">
-                                <div class="caption">
-                                    <h3>お寿司の盛り合わせ</h3>
-                                    <p>3000円</p>
-                            </div><!-- /caption -->
-                        </div><!-- thubnail last -->
-                    </div><!-- /col-md-3 last -->
+                    {% endfor %}
                 </div><!-- line180/row -->
                             <div class="jumbotron" style="padding-top:5px; padding-bottom:5px">
-                <h4 style="padding-left:20px; margin-left:30px; border-left: 2px solid red" class="daytitle">明後日</h4>
+                <h4 style="padding-left:20px; margin-left:30px; border-left: 2px solid red" class="daytitle">{{higawari[2][1]}}</h4>
             </div> <!-- jumbtron -->
                 <div class="row daymenu">
                 <!-- menu starting -->
+                    {% for i in higawari[2][0] %}
                     <div class="col-sm-6 col-md-3">
-                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
-                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
-                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
-                    </div>
-                    <div class="col-sm-6 col-md-3">
-                        <blockquote><h1>チキンカツカレー</h1><small>430yen</small></blockquote>
-                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
-                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
-                    </div><!-- /col-md-3 2 -->
-                    <div class="col-sm-6 col-md-3">
-                        <blockquote><h1>天丼</h1><small>900yen</small></blockquote>
-                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
-                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
-                    </div><!-- /col-md-3 3 -->
-                    <div class="col-sm-6 col-md-3">
-                        <blockquote><h1>aa定食</h1><small>30yen</small></blockquote>
-                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
-                        <blockquote><h1>唐沢定食</h1><small>30yen</small></blockquote>
+                        <blockquote><h1>{{i.name}}</h1><small>{{i.price}}</small></blockquote>
                     </div><!-- /col-md-3 last -->
+                    {% endfor %}
                 </div><!-- line113/row -->
         </div><!-- /col-11 -->
     </div><!-- /row -->
@@ -249,4 +184,3 @@ $(function(){
 
 </body>
 </html>
-

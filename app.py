@@ -88,7 +88,11 @@ def top_page():
 
 @app.route("/higawari")
 def higawari():
-    return render_template("index.html")
+    fk=ormer.Higawari2.return_desclist_by_date#PEP8_仕方なかった
+    return render_template(
+            "menu.html",
+            higawari=[(fk(day),day) for day in ormer.Bussday.hoge("2015/3/20",4)]
+            )
 
 
 @app.route("/rank")
