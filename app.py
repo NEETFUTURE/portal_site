@@ -72,6 +72,11 @@ iden_list = ["default","a","b","c","d","e","f","r",
 #         h.time = ormer.changeDatetimeToString(now,3)
 #         ormer.Higawari.session.commit()
 
+#2015/3/23を2015_3_23に変換する便利なjinjaフィルタ
+@app.template_filter("datamer")
+def datamer_filter(s):
+    return s.replace("/","_")
+
 
 @app.route("/")
 @app.route("/index")
@@ -82,7 +87,8 @@ def top_page():
         osirase_list=ormer.Osirase.getAllData(),
         today_higawari=ormer.Higawari2.return_desclist_by_date(
             "2015/3/23"#暫定的な日にちを代入
-        )
+        ),
+        toda="2015/3/23".replace("/","_")
            )
 
 
@@ -91,8 +97,7 @@ def higawari():
     fk=ormer.Higawari2.return_desclist_by_date#PEP8_仕方なかった
     return render_template(
             "menu.html",
-            higawari=[(fk(day),day) for day in ormer.Bussday.hoge("2015/3/20",4)]
-            )
+            higawari=[(fk(day),day) for day in ormer.Bussday.hoge("2015/3/20",4)])
 
 
 @app.route("/rank")

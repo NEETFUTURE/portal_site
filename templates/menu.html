@@ -135,10 +135,10 @@ $(function(){
             </div> <!-- jumbtron -->
                 <div class="row daymenu">
                 <!-- menu starting -->
-                    {% for i in higawari[0] %}
+                    {% for i in higawari[0][0] %}
                     <div class="col-sm-6 col-md-3">
                         <div class="thumbnail">
-                            <img src="../upload_picture/test.jpg" style="height:25%" alt="testpic">
+							<img src="../upload_picture/{{higawari[0][1]|datamer}}_{{i.identify}}" style="height:25%" alt="testpic">
                                 <div class="caption">
                                     <h3>{{i.name}}</h3>
                                     <p>{{i.price}}</p>
@@ -156,7 +156,7 @@ $(function(){
                     {% for i in higawari[1][0] %}
                     <div class="col-sm-6 col-md-3">
                         <div class="thumbnail">
-                            <img src="../upload_picture/test.jpg" style="height:25%" alt="testpic">
+							<img src="../upload_picture/{{higawari[1][1]}}_{{i.identify}}" style="height:25%" alt="testpic">
                                 <div class="caption">
                                     <h3>{{i.name}}</h3>
                                     <p>{{i.price}}</p>
