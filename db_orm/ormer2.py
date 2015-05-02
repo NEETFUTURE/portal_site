@@ -61,6 +61,7 @@ class Carousel(db.Model):
         db.session.commit()
 
     #IDで指定したカラムの文字列とリンクを更新
+    @classmethod
     def updateLink(cls, id, h1_str, link):
         target = cls.query.first_by(id=id).first()
         target.h1_str = h1_str
