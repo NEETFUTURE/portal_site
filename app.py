@@ -31,6 +31,12 @@ PASSWORD = "yuruyuriISgod"
 POR_MAIL = 'gakusyoku@gmail.com'
 POR_MAIL_PASS = 'hogehoge'
 
+mail_body = """
+あなたのメールを承りました。
+近日中にあなたの質問への解答が行きます。
+もし解答が中々来ない場合でも、他の解答の状態によって変わりますのでお待ちください。
+東京電機大学学生食堂ポータルサイト計画実行委員会
+"""
 
 
 app = Flask(__name__)
@@ -169,11 +175,7 @@ def sendopinion():
 
     sendmail({"title" :"投稿を受け取りました",
               "sender":"学食ポータル",
-              "body":"""
-              あなたのメールを承りました。
-              近日中にあなたの質問への解答が行きます。
-              もし解答が中々来ない場合でも、他の解答の状態によって変わりますのでお待ちください。
-              東京電機大学学生食堂ポータルサイト計画実行委員会""",
+              "body":mail_body,
               "recipients":[request.form["adress"]]})
     return "送信成功"
 
