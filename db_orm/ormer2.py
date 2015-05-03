@@ -63,7 +63,7 @@ class Carousel(db.Model):
     #IDで指定したカラムの文字列とリンクを更新
     @classmethod
     def updateLink(cls, id, h1_str, link):
-        target = cls.query.first_by(id=id).first()
+        target = cls.query.filter_by(id=id).first()
         target.h1_str = h1_str
         target.link = link
         db.session.commit()
@@ -208,4 +208,3 @@ class Opinion(db.Model):
 
     def __repr__(self):
         return "<Opinion %r>"%self.question
-
